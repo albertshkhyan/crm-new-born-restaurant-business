@@ -1,0 +1,60 @@
+
+html,body, #root {
+    width: 100%;
+    height: 100%;
+    margin: 0;
+}
+.flexible {
+    display: flex;
+    &.horizontal {
+        flex-direction: row;
+    }
+    &.vertical {
+        flex-direction: column;
+    }
+    &.vertical-reverse {
+        flex-direction: column-reverse;
+    }
+    &.j-start {
+        justify-content: flex-start;
+    }
+    &.j-end {
+        justify-content: flex-end;
+    }
+    &.j-center {
+        justify-content: center;
+    }
+    &.j-around {
+        justify-content: space-around;
+    }
+    &.j-between {
+        justify-content: space-between;
+    }
+    &.a-start {
+        align-items: flex-start;
+    }
+    &.a-end {
+        align-items: flex-end;
+    }
+    &.a-center {
+        align-items: center;
+    }
+    &.wrap {
+        flex-wrap: wrap;
+    }
+    &.no-wrap {
+        flex-wrap: nowrap;
+    }
+    &.grow {
+        flex-grow: 1;
+    }
+    &.no-grow {
+        flex-grow: 0;
+    }
+    &.shrink {
+        flex-shrink: 1;
+    }
+    &.no-shrink {
+        flex-shrink: 0;
+    }
+}

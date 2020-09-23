@@ -1,0 +1,20 @@
+.paper {
+  padding: 16px;
+  margin: auto;
+  width: 35%;
+}
+.btnM {
+  margin-top: 10px;
+}
+.authCcontainer {
+  height: calc(100% - 64px);
+}
+.formContainer {
+  width: 100%;
+}
+.formContainer .textFieldP {
+  padding: 7px 0;
+}
+.titlSignIn {
+  padding: 0.5rem 0;
+}
