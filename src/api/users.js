@@ -20,7 +20,7 @@ const userAPI = {
             // console.log('res loginUser', res);
             return res;
         } catch (error) {
-            throw new Error(error.response.data.message)
+            throw new Error(error.response.data.errors[0].msg)
         }
     },
     async registerUser(formData) {
@@ -35,7 +35,7 @@ const userAPI = {
             console.log('res registerUser API', res);
             return res;
         } catch (error) {
-            throw new Error(error.response.data.message)
+            throw new Error(error.response.data.errors[0].msg)
         }
     },
     // async getMeData(token) {
@@ -49,8 +49,9 @@ const userAPI = {
             console.log('res getMeData 📞📞📞📞📞📞', res);
             return res;
         } catch (error) {
+            // debugger
             console.log('error.response', error.response);
-            throw new Error(error.response.data.message)
+            throw new Error(error.response.data.errors[0].msg)
         }
 
 

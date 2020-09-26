@@ -22,12 +22,11 @@ function* getMeWorker(action) {
         // const { data } = yield call(userAPI.getMeData, action.token);//not need pass token becase we have token interceptor it check in localStorage have token or not, if have put in Request headers:Authorization: Bearer + token
         // console.log("if have token must check that token with send Bearer token");
         const { data } = yield call(userAPI.getMeData);//
-        console.log('getMeWorker📞📞📞📞📞📞 data', data.data.user);
-        yield put(setUserData(data.data.user));
+        console.log('getMeWorker📞📞📞📞📞📞 data', data.user);
+        yield put(setUserData(data.user));
         yield put(setLoggerState({isAuthorized: true}));//if token exist must redirect in home
 
     } catch (error) {
-        console.log('getMeWorker error.message', error.message);
         yield put(setLoggerState({ error: true, isAuthorized: false }));
         yield put(setLoggerMessage(error.message));
     }
