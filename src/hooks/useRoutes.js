@@ -2,7 +2,7 @@ import React from 'react';
 
 import { Switch, Route, Redirect } from 'react-router-dom';
 
-import { SignIn, SignUp } from "containers";
+import { SignIn, SignUp, Overview, Analytics } from "containers";
 
 const useRoutes = (isAuthenticated) => {
     let isAuth = isAuthenticated;
@@ -12,8 +12,9 @@ const useRoutes = (isAuthenticated) => {
     if (isAuth) {
         return (
             <Switch>
-                <Route path="/home" component={() => <h2>Home</h2>} />
-                <Redirect path="/" to="/home"/>
+                <Route path="/overview" component={Overview} />
+                <Route path="/analytics" component={Analytics} />
+                <Redirect path="/" to="/overview"/>
             </Switch>
         )
     } else {

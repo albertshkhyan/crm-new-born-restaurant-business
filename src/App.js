@@ -1,24 +1,18 @@
-import React, { useCallback, useEffect } from 'react';
+import React, {  useEffect } from 'react';
 
-import { Snackbar, Fade } from '@material-ui/core';
+import Snackbar from '@material-ui/core/Snackbar';
+import Fade from '@material-ui/core/Fade';
 import Alert from '@material-ui/lab/Alert';
 
-
-import useRoutes from "hooks/useRoutes";
+import _ from "lodash"
 import { useDispatch, useSelector } from 'react-redux';
 
+import useRoutes from "hooks/useRoutes";
 import { NavBar } from "components";
-
 import { getyMeAC } from './actions/userActions';
-import { useAuth } from 'hooks/useAuth';
-
 import { setLoggerState } from "reducers/loggerReducer";
 
-import _ from "lodash"
-
-
 import "./sass/main.scss";
-
 
 function App() {
   const logger = useSelector(state => state.logger);

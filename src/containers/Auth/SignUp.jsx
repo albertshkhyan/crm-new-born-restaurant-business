@@ -4,19 +4,17 @@ import { Formik } from "formik";
 import { validationSignUp } from "./authValidation";
 
 import { useDispatch } from "react-redux";
-
 import { registerAC } from "actions/userActions";
 
-import {
-  Grid,
-  Paper,
-  Button,
-  TextField,
-  Typography,
-  IconButton,
-  InputAdornment,
-} from "@material-ui/core";
-import { Visibility, VisibilityOff } from "@material-ui/icons";
+import Grid from '@material-ui/core/Grid';
+import Paper from '@material-ui/core/Paper';
+import Button from '@material-ui/core/Button';
+import TextField from '@material-ui/core/TextField';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import InputAdornment from '@material-ui/core/InputAdornment';
+import Visibility from '@material-ui/icons/Visibility';
+import VisibilityOff from '@material-ui/icons/VisibilityOff';
 
 import classes from "./style.module.css";
 

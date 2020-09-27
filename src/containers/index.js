@@ -1,7 +1,11 @@
-import SignIn from "./Auth/SignIn.jsx";
-import SignUp from "./Auth/SignUp.jsx";
+import SignIn from "./Auth/SignIn";
+import SignUp from "./Auth/SignUp";
+import Overview from "./Overview/Overview";
+import Analytics from "./Analytics/Analytics";
 
 export {
     SignIn,
-    SignUp 
+    SignUp,
+    Overview,
+    Analytics
 }

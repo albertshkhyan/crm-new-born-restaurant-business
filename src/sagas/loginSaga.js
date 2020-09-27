@@ -1,6 +1,6 @@
 import { call, takeEvery, put } from "redux-saga/effects";
 
-import { setUserData } from "reducers/userReducer";
+// import { setUserData } from "reducers/userReducer";
 import {
     setLoggerState,
     setLoggerMessage
