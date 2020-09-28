@@ -2,16 +2,21 @@ import React from "react";
 
 import { NavLink } from "react-router-dom";
 
-import Box from '@material-ui/core/Box';
-import Badge from '@material-ui/core/Badge';
-import Button from '@material-ui/core/Button';
-import Avatar from '@material-ui/core/Avatar';
-import MenuItem from '@material-ui/core/MenuItem';
-import IconButton from '@material-ui/core/IconButton';
-import { withStyles, makeStyles } from '@material-ui/core/styles';
+import Box from "@material-ui/core/Box";
+import Badge from "@material-ui/core/Badge";
+import Button from "@material-ui/core/Button";
+import Avatar from "@material-ui/core/Avatar";
+import MenuItem from "@material-ui/core/MenuItem";
+import Typography from "@material-ui/core/Typography";
+import IconButton from "@material-ui/core/IconButton";
+import { withStyles, makeStyles } from "@material-ui/core/styles";
+
 import NotificationsIcon from "@material-ui/icons/Notifications";
+import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import ButtonAppBarCollapse from "./ButtonAppBarCollapse";
+
+import Icon from "components/Icon/Icon";
 
 const useStyles = makeStyles((theme) => ({
   root: {
@@ -98,38 +103,91 @@ const AppBarCollapse = ({ isAuth, onLogout }) => {
       ) : (
         <>
           <ButtonAppBarCollapse>
-            <MenuItem component={NavLink} to="/login">
-              Sign Out
+            <MenuItem component={NavLink} to="/logout">
+              <Icon width={20} height={20} name="logout" />
+              <Box width={1} align="right">
+                <Typography variant="body1">Sign Out</Typography>
+              </Box>
+            </MenuItem>
+
+            <MenuItem>
+              {/* <IconButton
+                aria-label="show 11 new notifications"
+                color="inherit"
+              > */}
+              <Box>
+                <Badge
+                  anchorOrigin={{
+                    vertical: "top",
+                    horizontal: "left",
+                  }}
+                  badgeContent={11}
+                  color="secondary"
+                >
+                  <NotificationsIcon />
+                </Badge>
+              </Box>
+              {/* </IconButton> */}
+              <Box width={1} align="right">
+                <Typography variant="body1">Notifications</Typography>
+              </Box>
+            </MenuItem>
+
+            <MenuItem>
+              {/* <Box> */}
+                  <AccountCircle />
+              {/* </Box> */}
+              <Box width={1} align="right">
+                <Typography variant="body1">Profile</Typography>
+              </Box>
             </MenuItem>
           </ButtonAppBarCollapse>
           <div className={classes.buttonBar} id="appbar-collapse">
-            <Button
+            {/* <Button
               component={NavLink}
               to="/login"
               onClick={onLogout}
               color="inherit"
             >
               Sign Out
-            </Button>
+            </Button> */}
 
-            <StyledBadge
+            <Badge
               overlap="circle"
-              clone
               anchorOrigin={{
                 vertical: "bottom",
                 horizontal: "right",
               }}
-              variant="dot"
             >
-              <Box width={50} height={50} clone>
+              <Box mr="1rem" className="avatar">
                 <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
               </Box>
-            </StyledBadge>
+              <div>
+                <Box mr="1rem" className="avatar">
+                  <Typography variant="caption">Alik Shkhyan</Typography>
+                </Box>
+                <Box mr="1rem" className="avatar">
+                  <Typography variant="caption">
+                    alikshkhyan@gmail.com
+                  </Typography>
+                </Box>
+              </div>
+            </Badge>
+
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={2} color="secondary">
                 <NotificationsIcon />
               </Badge>
             </IconButton>
+
+            <Button
+              component={NavLink}
+              to="/logout"
+              onClick={onLogout}
+              color="inherit"
+            >
+              <Icon width={20} height={20} name="logout" />
+            </Button>
           </div>
         </>
       )}
