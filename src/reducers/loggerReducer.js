@@ -12,8 +12,9 @@ export const LOGGER_ACTIONS = {
 
 const initialState = {
     // processing: false,
+    status: "",
     isAuthorized: false,
-    error: false, 
+    error: false,
     message: '', // Store error data from the backend here
     isLoading: false,// Set this to `true` if You want to show spinner
 }
@@ -26,6 +27,7 @@ const loggerReducer = createReducer(initialState, {
         }
     },
     [LOGGER_ACTIONS.SET_LOGGER_STATE](state, { payload }) {
+        console.log('LOGGER_ACTIONS  payload', payload);
         return {
             ...state,
             ...payload

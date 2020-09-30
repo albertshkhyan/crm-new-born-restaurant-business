@@ -3,25 +3,13 @@ import React from "react";
 import { AppBar, Toolbar, Typography, makeStyles } from "@material-ui/core";
 
 import AppBarCollapse from "./AppBarCollapse";
-import { useSelector } from "react-redux";
 import IconButton from "@material-ui/core/IconButton";
 import MenuIcon from "@material-ui/icons/Menu";
-import Dashboard from "components/Dashboard/Dashboard";
 import cl from "classnames";
 
 
 const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
-  grow: {
-    flexGrow: 1,
-  },
-  title: {
-    display: "none",
-    [theme.breakpoints.up("sm")]: {
-      display: "block",
-    },
-  },
-  ///////////
   appBar: {
     [theme.breakpoints.up('sm')]: {
       width: `calc(100% - ${drawerWidth}px)`,
@@ -36,21 +24,16 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-const NavBar = (props) => {
+const Navbar = ({ 
+    isAuth,
+    hanldeLogout,
+    handleDrawerToggle,
+}) => {
   const classes = useStyles();
-  const logger = useSelector((state) => state.logger);
-  const [mobileOpen, setMobileOpen] = React.useState(false);
-
-  const handleDrawerToggle = () => {
-    setMobileOpen(!mobileOpen);
-  };
-
-  const hanldeLogout = () => {};
-
 
   return (
     <>
-    <AppBar position="fixed" className={cl({ [classes.appBar]: logger.isAuthorized  })}>
+    <AppBar position="fixed" className={cl({ [classes.appBar]: isAuth  })}>
         <Toolbar>
           <IconButton
             color="inherit"
@@ -65,14 +48,13 @@ const NavBar = (props) => {
             New Born
           </Typography>
           <AppBarCollapse
-            isAuth={logger.isAuthorized}
+            isAuth={isAuth}
             onLogout={hanldeLogout}
           />
         </Toolbar>
       </AppBar>
-      {logger.isAuthorized && <Dashboard mobileOpen={mobileOpen} handleDrawerToggle={handleDrawerToggle}/> }
     </>
   );
 };
 
-export default NavBar;
+export default Navbar;

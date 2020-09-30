@@ -82,10 +82,6 @@ const AppBarCollapse = ({ isAuth, onLogout }) => {
             </MenuItem>
 
             <MenuItem>
-              {/* <IconButton
-                aria-label="show 11 new notifications"
-                color="inherit"
-              > */}
               <Box>
                 <Badge
                   anchorOrigin={{
@@ -98,31 +94,21 @@ const AppBarCollapse = ({ isAuth, onLogout }) => {
                   <NotificationsIcon />
                 </Badge>
               </Box>
-              {/* </IconButton> */}
               <Box width={1} align="right">
                 <Typography variant="body1">Notifications</Typography>
               </Box>
             </MenuItem>
 
             <MenuItem>
-              {/* <Box> */}
                   <AccountCircle />
-              {/* </Box> */}
               <Box width={1} align="right">
                 <Typography variant="body1">Profile</Typography>
               </Box>
             </MenuItem>
           </ButtonAppBarCollapse>
+          
           <div className={classes.buttonBar} id="appbar-collapse">
-            {/* <Button
-              component={NavLink}
-              to="/login"
-              onClick={onLogout}
-              color="inherit"
-            >
-              Sign Out
-            </Button> */}
-
+            {/**Avatar - start */}
             <Badge
               overlap="circle"
               anchorOrigin={{
@@ -131,7 +117,7 @@ const AppBarCollapse = ({ isAuth, onLogout }) => {
               }}
             >
               <Box mr="1rem" className="avatar">
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <Avatar alt="Remy Sharp" src="" />
               </Box>
               <div>
                 <Box mr="1rem" className="avatar">
@@ -144,7 +130,7 @@ const AppBarCollapse = ({ isAuth, onLogout }) => {
                 </Box>
               </div>
             </Badge>
-
+            {/**Avatar - end */}
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={2} color="secondary">
                 <NotificationsIcon />

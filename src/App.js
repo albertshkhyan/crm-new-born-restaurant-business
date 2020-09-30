@@ -1,4 +1,4 @@
-import React, {  useEffect } from 'react';
+import React, { useEffect } from 'react';
 
 import Snackbar from '@material-ui/core/Snackbar';
 import Fade from '@material-ui/core/Fade';
@@ -7,18 +7,24 @@ import Alert from '@material-ui/lab/Alert';
 import _ from "lodash"
 import { useDispatch, useSelector } from 'react-redux';
 
-import useRoutes from "hooks/useRoutes";
-import { NavBar } from "components";
+// import useRoutes from "hooks/useRoutes";
 import { getyMeAC } from './actions/userActions';
 import { setLoggerState } from "reducers/loggerReducer";
 
+// import { Switch, Route, Redirect } from 'react-router-dom';
+// import { SignIn, SignUp } from "containers";
+
+import AppRoutes from './routers/Routes';
+
 import "./sass/main.scss";
+import Layout from 'components/Layout/Layout';
+console.log('AppRoutes', AppRoutes);
 
 function App() {
   const logger = useSelector(state => state.logger);
   const dispatch = useDispatch();
   // const auth = useAuth()
-  const routes = useRoutes(logger.isAuthorized, logger.error);
+  // const routes = useRoutes(logger.isAuthorized, logger.error);
   const profile = useSelector((state) => state.users.data)
 
   /*#In every app initilize we must check in state have user data or not, 
@@ -59,10 +65,19 @@ function App() {
   const handleClose = () => {
     dispatch(setLoggerState({ error: false }))
   }
+
+  let isAuth = logger.isAuthorized;
+  if (!isAuth) {
+    isAuth = localStorage.getItem("token");
+  }
+  // console.log("APP RENDER");
   return (
     <>
-      <NavBar />
-      {routes}
+      <Layout>
+        <AppRoutes />
+
+      </Layout>
+
       <Snackbar
         open={logger.error}
         TransitionComponent={Fade}

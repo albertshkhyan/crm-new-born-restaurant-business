@@ -41,7 +41,7 @@ const userAPI = {
     // async getMeData(token) {
     //not need pass token becase we have token interceptor it check in localStorage have token or not, if have put in Request headers:Authorization: Bearer + token
     async getMeData() {
-            console.log('res getMeData work');
+        console.log('res getMeData work');
 
         try {
             // console.log('formData getMeData API', token);
