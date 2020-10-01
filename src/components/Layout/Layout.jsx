@@ -3,7 +3,7 @@ import React from "react";
 import { useSelector } from "react-redux";
 import Dashboard from "components/Dashboard/Dashboard";
 import Navbar from 'components/Navbar/Navbar';
-import FloatingActionButton from 'components/FloatingActionButton';
+import FloatingActionButton from 'components/FloatingActionButton/FloatingActionButton';
 
 const Layout = ({children}) => {
   const logger = useSelector((state) => state.logger);

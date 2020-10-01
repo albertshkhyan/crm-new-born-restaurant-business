@@ -13,7 +13,7 @@ import Icon from "components/Icon/Icon";
 
 import { NavLink } from "react-router-dom";
 import { Overview } from "containers";
-import FloatingActionButton from './../FloatingActionButton';
+import FloatingActionButton from '../FloatingActionButton/FloatingActionButton';
 
 const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({
