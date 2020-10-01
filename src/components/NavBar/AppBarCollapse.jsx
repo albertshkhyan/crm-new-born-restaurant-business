@@ -9,7 +9,7 @@ import Avatar from "@material-ui/core/Avatar";
 import MenuItem from "@material-ui/core/MenuItem";
 import Typography from "@material-ui/core/Typography";
 import IconButton from "@material-ui/core/IconButton";
-import { withStyles, makeStyles } from "@material-ui/core/styles";
+import { makeStyles } from "@material-ui/core/styles";
 
 import NotificationsIcon from "@material-ui/icons/Notifications";
 import AccountCircle from '@material-ui/icons/AccountCircle';
@@ -47,35 +47,6 @@ const useStyles = makeStyles((theme) => ({
   },
 }));
 
-//create component with some sttyles - witStyles
-const StyledBadge = withStyles((theme) => ({
-  badge: {
-    backgroundColor: "#44b700",
-    color: "#44b700",
-    boxShadow: `0 0 0 2px ${theme.palette.background.paper}`,
-    "&::after": {
-      position: "absolute",
-      top: 0,
-      left: 0,
-      width: "100%",
-      height: "100%",
-      borderRadius: "50%",
-      animation: "$ripple 1.2s infinite ease-in-out",
-      border: "1px solid currentColor",
-      content: '""',
-    },
-  },
-  "@keyframes ripple": {
-    "0%": {
-      transform: "scale(.8)",
-      opacity: 1,
-    },
-    "100%": {
-      transform: "scale(2.4)",
-      opacity: 0,
-    },
-  },
-}))(Badge);
 
 const AppBarCollapse = ({ isAuth, onLogout }) => {
   const classes = useStyles();
@@ -111,10 +82,6 @@ const AppBarCollapse = ({ isAuth, onLogout }) => {
             </MenuItem>
 
             <MenuItem>
-              {/* <IconButton
-                aria-label="show 11 new notifications"
-                color="inherit"
-              > */}
               <Box>
                 <Badge
                   anchorOrigin={{
@@ -127,31 +94,21 @@ const AppBarCollapse = ({ isAuth, onLogout }) => {
                   <NotificationsIcon />
                 </Badge>
               </Box>
-              {/* </IconButton> */}
               <Box width={1} align="right">
                 <Typography variant="body1">Notifications</Typography>
               </Box>
             </MenuItem>
 
             <MenuItem>
-              {/* <Box> */}
                   <AccountCircle />
-              {/* </Box> */}
               <Box width={1} align="right">
                 <Typography variant="body1">Profile</Typography>
               </Box>
             </MenuItem>
           </ButtonAppBarCollapse>
+          
           <div className={classes.buttonBar} id="appbar-collapse">
-            {/* <Button
-              component={NavLink}
-              to="/login"
-              onClick={onLogout}
-              color="inherit"
-            >
-              Sign Out
-            </Button> */}
-
+            {/**Avatar - start */}
             <Badge
               overlap="circle"
               anchorOrigin={{
@@ -160,7 +117,7 @@ const AppBarCollapse = ({ isAuth, onLogout }) => {
               }}
             >
               <Box mr="1rem" className="avatar">
-                <Avatar alt="Remy Sharp" src="/static/images/avatar/1.jpg" />
+                <Avatar alt="Remy Sharp" src="" />
               </Box>
               <div>
                 <Box mr="1rem" className="avatar">
@@ -173,7 +130,7 @@ const AppBarCollapse = ({ isAuth, onLogout }) => {
                 </Box>
               </div>
             </Badge>
-
+            {/**Avatar - end */}
             <IconButton aria-label="show 17 new notifications" color="inherit">
               <Badge badgeContent={2} color="secondary">
                 <NotificationsIcon />

@@ -1,5 +1,5 @@
-import NavBar from './NavBar/NavBar';
+import Navbar from './';
 
 export {
-    NavBar,
+    Navbar,
 }
