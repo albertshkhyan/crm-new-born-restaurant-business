@@ -11,7 +11,7 @@ function* registerWorker(action) {
     try {
         const { data } = yield call(userAPI.registerUser, action.inputData);
         console.log('registerWorker data', data);
-        yield put(setLoggerState({isAuthorized: true}));
+        yield put(setLoggerState({ isAuthorized: false }));
         yield put(setLoggerMessage(data.message))
 
 

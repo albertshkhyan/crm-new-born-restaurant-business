@@ -8,6 +8,7 @@ import {
 
 import { USER_ACTIONS } from 'actions/actionTypes';
 import userAPI from "api/users";
+import { getyMeAC } from "actions/userActions";
 
 /**
  * 
@@ -31,6 +32,7 @@ function* loginWorker(action) {
         const { data } = yield call(userAPI.loginUser, action.inputData);//
         console.log('data loginWorker', data);
         yield localStorage.setItem("token", data.token);
+        yield put(getyMeAC(data.token));//run new saga worker
         yield put(setLoggerState({ isAuthorized: true, status: "authorized", message: "" }));
         // yield put(setUserData(data));
     } catch (error) {

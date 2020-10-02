@@ -9,7 +9,7 @@ import axiosInstance from 'helpers/axios';
 
 
 
-
+//on login and register we not send Bearer token
 const userAPI = {
     async loginUser(formData) {
         // You don't need to stringify your payload. Axios will do it for you when it it send a request.
@@ -25,7 +25,7 @@ const userAPI = {
     async registerUser(formData) {
         try {
             const res = await axiosInstance.post(config.server.routes.register, formData, {
-                params: {
+                params: {//add query param
                     registerd: true
                 }
             });
@@ -37,10 +37,15 @@ const userAPI = {
     },
     // async getMeData(token) {
     //not need pass token becase we have token interceptor it check in localStorage have token or not, if have put in Request headers:Authorization: Bearer + token
-    async getMeData() {
+    async getMeData(token) {
         console.log('getMeData work');
         // try {
-        const res = await axiosInstance.get(config.server.routes.me);
+        const res = await axiosInstance.get(config.server.routes.me, {
+            headers: {
+                Authorization: token,
+            },
+        });
+
         console.log('res', res);
         return res;
         // } catch (error) {

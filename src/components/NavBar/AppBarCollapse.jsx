@@ -1,56 +1,59 @@
-import React from "react";
+import React from 'react';
 
-import { NavLink } from "react-router-dom";
+import { NavLink } from 'react-router-dom';
 
-import Box from "@material-ui/core/Box";
-import Badge from "@material-ui/core/Badge";
-import Button from "@material-ui/core/Button";
-import Avatar from "@material-ui/core/Avatar";
-import MenuItem from "@material-ui/core/MenuItem";
-import Typography from "@material-ui/core/Typography";
-import IconButton from "@material-ui/core/IconButton";
-import { makeStyles } from "@material-ui/core/styles";
+import Box from '@material-ui/core/Box';
+import Badge from '@material-ui/core/Badge';
+import Button from '@material-ui/core/Button';
+import Avatar from '@material-ui/core/Avatar';
+import MenuItem from '@material-ui/core/MenuItem';
+import Typography from '@material-ui/core/Typography';
+import IconButton from '@material-ui/core/IconButton';
+import { makeStyles } from '@material-ui/core/styles';
 
-import NotificationsIcon from "@material-ui/icons/Notifications";
+import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
-import ButtonAppBarCollapse from "./ButtonAppBarCollapse";
+import ButtonAppBarCollapse from './ButtonAppBarCollapse';
 
-import Icon from "components/Icon/Icon";
+import Icon from 'components/Icon/Icon';
+import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
-  root: {
-    position: "absolute",
-    right: 0,
-  },
-  buttonBar: {
-    [theme.breakpoints.down("xs")]: {
-      display: "none",
-    },
-    margin: "10px",
-    paddingLeft: "16px",
-    right: 0,
-    position: "relative",
-    // width: "100%",
-    background: "transparent",
-    "& a": {
-      color: "white",
-      textDecoration: "none",
-      fontWeight: "bold",
-    },
-  },
-  navlink: {
-    textDecoration: "none",
-    "& li": {
-      color: "black",
-    },
-  },
+	root: {
+		position: 'absolute',
+		right: 0,
+	},
+	buttonBar: {
+		[theme.breakpoints.down('xs')]: {
+			display: 'none',
+		},
+		margin: '10px',
+		paddingLeft: '16px',
+		right: 0,
+		position: 'relative',
+		// width: "100%",
+		background: 'transparent',
+		'& a': {
+			color: 'white',
+			textDecoration: 'none',
+			fontWeight: 'bold',
+		},
+	},
+	navlink: {
+		textDecoration: 'none',
+		'& li': {
+			color: 'black',
+		},
+	},
 }));
 
-
 const AppBarCollapse = ({ isAuth, onLogout, hanldeLogout }) => {
-  const classes = useStyles();
-  return (
+	// debugger;
+	const { data: user } = useSelector((state) => state.users);
+
+	const classes = useStyles();
+	return (
 		<div className={classes.root}>
 			{!isAuth ? (
 				<>
@@ -66,7 +69,7 @@ const AppBarCollapse = ({ isAuth, onLogout, hanldeLogout }) => {
 						<Button component={NavLink} to="/login" color="inherit">
 							Sign In
 						</Button>
-						<Button onClick={hanldeLogout } component={NavLink} to="/register" color="inherit">
+						<Button onClick={hanldeLogout} component={NavLink} to="/register" color="inherit">
 							Sign Up
 						</Button>
 					</div>
@@ -121,10 +124,10 @@ const AppBarCollapse = ({ isAuth, onLogout, hanldeLogout }) => {
 							</Box>
 							<div>
 								<Box mr="1rem" className="avatar">
-									<Typography variant="caption">Alik Shkhyan</Typography>
+									<Typography variant="caption">{`${user.name} ${user.last_name}`}</Typography>
 								</Box>
 								<Box mr="1rem" className="avatar">
-									<Typography variant="caption">alikshkhyan@gmail.com</Typography>
+									<Typography variant="caption">{user.email}</Typography>
 								</Box>
 							</div>
 						</Badge>
@@ -142,7 +145,7 @@ const AppBarCollapse = ({ isAuth, onLogout, hanldeLogout }) => {
 				</>
 			)}
 		</div>
-  );
+	);
 };
 
 export default AppBarCollapse;
