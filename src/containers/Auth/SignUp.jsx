@@ -19,17 +19,14 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import classes from "./style.module.css";
 
 const SignUp = (props) => {
-  console.log('props SignUp', props);
   // debugger
   const dispatch = useDispatch();
   const [showPassword, setShowPassword] = useState(false);
-  console.log("showPassword", showPassword);
 
   const handleClickShowPassword = () => {
     setShowPassword(!showPassword);
   };
   const handleSubmit = (values, actions) => {
-    console.log("SignUp+++++++++++++++++++++++++++++values", values);
     dispatch(registerAC(values));
     actions.setSubmitting(false); //disabled={isSubmitting}
     props.history.push("/login?registered=true");

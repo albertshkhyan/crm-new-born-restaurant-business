@@ -25,27 +25,24 @@ const useStyles = makeStyles((theme) => ({
 
 const Navbar = ({ isAuth, hanldeLogout, handleDrawerToggle }) => {
 	const classes = useStyles();
-
 	return (
-		<>
-			<AppBar position="fixed" className={cl({ [classes.appBar]: isAuth })}>
-				<Toolbar>
-					<IconButton
-						color="inherit"
-						aria-label="open drawer"
-						edge="start"
-						onClick={handleDrawerToggle}
-						className={classes.menuButton}
-					>
-						<MenuIcon />
-					</IconButton>
-					<Typography variant="h6" noWrap>
-						New Born
-					</Typography>
-					<AppBarCollapse isAuth={isAuth} onLogout={hanldeLogout} />
-				</Toolbar>
-			</AppBar>
-		</>
+		<AppBar position="fixed" className={cl({ [classes.appBar]: isAuth })}>
+			<Toolbar>
+				<IconButton
+					color="inherit"
+					aria-label="open drawer"
+					edge="start"
+					onClick={handleDrawerToggle}
+					className={classes.menuButton}
+				>
+					<MenuIcon />
+				</IconButton>
+				<Typography variant="h6" noWrap>
+					New Born
+				</Typography>
+				<AppBarCollapse isAuth={isAuth} onLogout={hanldeLogout} />
+			</Toolbar>
+		</AppBar>
 	);
 };
 

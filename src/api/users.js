@@ -1,4 +1,3 @@
-import * as axios from "axios";
 import config from "configs/config.js";
 import axiosInstance from 'helpers/axios';
 
@@ -24,8 +23,6 @@ const userAPI = {
         }
     },
     async registerUser(formData) {
-        console.log('formData registerUser API', formData);
-
         try {
             const res = await axiosInstance.post(config.server.routes.register, formData, {
                 params: {
@@ -41,20 +38,15 @@ const userAPI = {
     // async getMeData(token) {
     //not need pass token becase we have token interceptor it check in localStorage have token or not, if have put in Request headers:Authorization: Bearer + token
     async getMeData() {
-        console.log('res getMeData work');
-
-        try {
-            // console.log('formData getMeData API', token);
-            const res = await axiosInstance.get(config.server.routes.me);
-            console.log('res getMeData 📞📞📞📞📞📞', res);
-            return res;
-        } catch (error) {
-            // debugger
-            console.log('error.response', error.response);
-            throw new Error(error.response.data.errors[0].msg)
-        }
-
-
+        console.log('getMeData work');
+        // try {
+        const res = await axiosInstance.get(config.server.routes.me);
+        console.log('res', res);
+        return res;
+        // } catch (error) {
+        // console.log('getMeData - error.response', error.response);
+        // throw new Error(error.response.data.errors[0].msg)
+        // }
     }
 }
 export default userAPI;

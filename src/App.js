@@ -9,7 +9,7 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // import useRoutes from "hooks/useRoutes";
 import { getyMeAC } from './actions/userActions';
-import { setLoggerState } from "reducers/loggerReducer";
+import { getMeDataTC, setLoggerState } from "reducers/loggerReducer";
 
 // import { Switch, Route, Redirect } from 'react-router-dom';
 // import { SignIn, SignUp } from "containers";
@@ -18,7 +18,6 @@ import AppRoutes from './routers/Routes';
 
 import "./sass/main.scss";
 import Layout from 'components/Layout/Layout';
-console.log('AppRoutes', AppRoutes);
 
 function App() {
   const logger = useSelector(state => state.logger);
@@ -55,6 +54,9 @@ function App() {
             if in localStorage exist token after reload must shot identy page (home page)
   */
 
+  // if (_.isEmpty(profile)) {
+  //   localStorage.clear();
+  // }
 
   useEffect(() => {
     if (_.isEmpty(profile)) {

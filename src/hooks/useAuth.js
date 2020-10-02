@@ -30,17 +30,13 @@ const authContext = createContext({
 const accessToken = "token";
 // Provider hook that creates auth object and handles state
 export function useAuth() {
-    console.log("--------useAuth start------------");
     const logger = useSelector(state => state.logger);
     // console.log('useAuth logger', logger);
     const [token, setToken] = useState(null);
     const dispatch = useDispatch();
     const profile = useSelector((state) => state.users.data)
-    console.log('profile', profile);
 
     const login = useCallback((jwtToken) => {
-        // console.log('jwtToken', jwtToken);
-        console.log("login or useAuth worked");
         if(jwtToken) {
             setToken(jwtToken);
         }
@@ -54,10 +50,8 @@ export function useAuth() {
 
 
     useEffect(() => {
-        console.log("USE EFFECT IN AUTH HOOK");
         const fetch = async () => {
             if (_.isEmpty(profile)) {
-                console.log('USE EFFECT IN AUTH HOOK - CHECK PROFILE', localStorage.getItem(accessToken));
                 const isToken = localStorage.getItem(accessToken);
                 await dispatch(getyMeAC(isToken));
                 if(isToken) login(isToken);

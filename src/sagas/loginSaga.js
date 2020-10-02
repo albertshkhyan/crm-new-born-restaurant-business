@@ -18,25 +18,30 @@ function* loginWorker(action) {
     const token = localStorage.getItem("token");
     if (token) {
         //if user already logged in system, we  musts show about that
+        //yield put(setLoggerState({ error: true, isAuthorized: false }))
+        // const { data } = yield call(userAPI.getMeData);
+        console.log('loginWorker📞📞📞📞📞📞');
         yield put(setLoggerState({ error: true }));
         yield put(setLoggerMessage("User already logged in"));
         return
-        
+
     }
     try {
         //after success login server give us token 
         const { data } = yield call(userAPI.loginUser, action.inputData);//
         console.log('data loginWorker', data);
         yield localStorage.setItem("token", data.token);
-        yield put(setLoggerState({isAuthorized: true}));
+        yield put(setLoggerState({ isAuthorized: true, status: "authorized", message: "" }));
         // yield put(setUserData(data));
     } catch (error) {
+        console.log('loginSaga - error', error);
         yield put(setLoggerState({ error: true }));
         yield put(setLoggerMessage(error.message));
     }
 }
 
 function* loginWatcher() {
+    console.log('loginWatcher WORK');
     //Spawns a saga on each action dispatched to the Store that matches pattern.
     yield takeEvery(USER_ACTIONS.LOGIN_SAGA, loginWorker);
 }

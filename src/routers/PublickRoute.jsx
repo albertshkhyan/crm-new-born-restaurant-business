@@ -7,7 +7,6 @@ import _ from 'lodash';
 
 const PublickRoute = ({ component: Component, ...restProps }) => {
 	const isAuthenticated = useSelector((state) => state.logger.isAuthorized);
-	console.log('isAuthenticated+++++++++++++++++++++', isAuthenticated);
 	const profile = useSelector((state) => state.users.data); //uid
 
 	const isProfile = _.isEmpty(profile);

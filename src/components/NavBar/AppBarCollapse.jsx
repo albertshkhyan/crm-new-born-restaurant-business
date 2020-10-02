@@ -48,107 +48,100 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 
-const AppBarCollapse = ({ isAuth, onLogout }) => {
+const AppBarCollapse = ({ isAuth, onLogout, hanldeLogout }) => {
   const classes = useStyles();
   return (
-    <div className={classes.root}>
-      {!isAuth ? (
-        <>
-          <ButtonAppBarCollapse>
-            <MenuItem component={NavLink} to="/login">
-              Sign In
-            </MenuItem>
-            <MenuItem component={NavLink} to="/register">
-              Sign Up
-            </MenuItem>
-          </ButtonAppBarCollapse>
-          <div className={classes.buttonBar} id="appbar-collapse">
-            <Button component={NavLink} to="/login" color="inherit">
-              Sign In
-            </Button>
-            <Button component={NavLink} to="/register" color="inherit">
-              Sign Up
-            </Button>
-          </div>
-        </>
-      ) : (
-        <>
-          <ButtonAppBarCollapse>
-            <MenuItem component={NavLink} to="/logout">
-              <Icon width={20} height={20} name="logout" />
-              <Box width={1} align="right">
-                <Typography variant="body1">Sign Out</Typography>
-              </Box>
-            </MenuItem>
+		<div className={classes.root}>
+			{!isAuth ? (
+				<>
+					<ButtonAppBarCollapse>
+						<MenuItem component={NavLink} to="/login">
+							Sign In
+						</MenuItem>
+						<MenuItem component={NavLink} to="/register">
+							Sign Up
+						</MenuItem>
+					</ButtonAppBarCollapse>
+					<div className={classes.buttonBar} id="appbar-collapse">
+						<Button component={NavLink} to="/login" color="inherit">
+							Sign In
+						</Button>
+						<Button onClick={hanldeLogout } component={NavLink} to="/register" color="inherit">
+							Sign Up
+						</Button>
+					</div>
+				</>
+			) : (
+				<>
+					<ButtonAppBarCollapse>
+						<MenuItem component={NavLink} to="/logout">
+							<Icon width={20} height={20} name="logout" />
+							<Box width={1} align="right">
+								<Typography variant="body1">Sign Out</Typography>
+							</Box>
+						</MenuItem>
 
-            <MenuItem>
-              <Box>
-                <Badge
-                  anchorOrigin={{
-                    vertical: "top",
-                    horizontal: "left",
-                  }}
-                  badgeContent={11}
-                  color="secondary"
-                >
-                  <NotificationsIcon />
-                </Badge>
-              </Box>
-              <Box width={1} align="right">
-                <Typography variant="body1">Notifications</Typography>
-              </Box>
-            </MenuItem>
+						<MenuItem>
+							<Box>
+								<Badge
+									anchorOrigin={{
+										vertical: 'top',
+										horizontal: 'left',
+									}}
+									badgeContent={11}
+									color="secondary"
+								>
+									<NotificationsIcon />
+								</Badge>
+							</Box>
+							<Box width={1} align="right">
+								<Typography variant="body1">Notifications</Typography>
+							</Box>
+						</MenuItem>
 
-            <MenuItem>
-                  <AccountCircle />
-              <Box width={1} align="right">
-                <Typography variant="body1">Profile</Typography>
-              </Box>
-            </MenuItem>
-          </ButtonAppBarCollapse>
-          
-          <div className={classes.buttonBar} id="appbar-collapse">
-            {/**Avatar - start */}
-            <Badge
-              overlap="circle"
-              anchorOrigin={{
-                vertical: "bottom",
-                horizontal: "right",
-              }}
-            >
-              <Box mr="1rem" className="avatar">
-                <Avatar alt="Remy Sharp" src="" />
-              </Box>
-              <div>
-                <Box mr="1rem" className="avatar">
-                  <Typography variant="caption">Alik Shkhyan</Typography>
-                </Box>
-                <Box mr="1rem" className="avatar">
-                  <Typography variant="caption">
-                    alikshkhyan@gmail.com
-                  </Typography>
-                </Box>
-              </div>
-            </Badge>
-            {/**Avatar - end */}
-            <IconButton aria-label="show 17 new notifications" color="inherit">
-              <Badge badgeContent={2} color="secondary">
-                <NotificationsIcon />
-              </Badge>
-            </IconButton>
+						<MenuItem>
+							<AccountCircle />
+							<Box width={1} align="right">
+								<Typography variant="body1">Profile</Typography>
+							</Box>
+						</MenuItem>
+					</ButtonAppBarCollapse>
 
-            <Button
-              component={NavLink}
-              to="/logout"
-              onClick={onLogout}
-              color="inherit"
-            >
-              <Icon width={20} height={20} name="logout" />
-            </Button>
-          </div>
-        </>
-      )}
-    </div>
+					<div className={classes.buttonBar} id="appbar-collapse">
+						{/**Avatar - start */}
+						<Badge
+							overlap="circle"
+							anchorOrigin={{
+								vertical: 'bottom',
+								horizontal: 'right',
+							}}
+						>
+							<Box mr="1rem" className="avatar">
+								<Avatar alt="Remy Sharp" src="" />
+							</Box>
+							<div>
+								<Box mr="1rem" className="avatar">
+									<Typography variant="caption">Alik Shkhyan</Typography>
+								</Box>
+								<Box mr="1rem" className="avatar">
+									<Typography variant="caption">alikshkhyan@gmail.com</Typography>
+								</Box>
+							</div>
+						</Badge>
+						{/**Avatar - end */}
+						<IconButton aria-label="show 17 new notifications" color="inherit">
+							<Badge badgeContent={2} color="secondary">
+								<NotificationsIcon />
+							</Badge>
+						</IconButton>
+
+						<Button component={NavLink} to="/logout" onClick={onLogout} color="inherit">
+							<Icon width={20} height={20} name="logout" />
+						</Button>
+					</div>
+				</>
+			)}
+		</div>
   );
 };
 

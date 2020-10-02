@@ -23,7 +23,6 @@ const userReducer = createReducer(initialState, {//create reducer which initial 
 
 //action creators
 export const setUserData = (payload) => {
-    console.log('payload setUserData', payload);
     return ({
         type: USER_ACTIONS.SET_USER_DATA,
         payload
