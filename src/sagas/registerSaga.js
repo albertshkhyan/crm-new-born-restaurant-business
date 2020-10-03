@@ -3,7 +3,6 @@ import { put, takeEvery, call } from 'redux-saga/effects';
 import { USER_ACTIONS } from 'actions/actionTypes';
 import userAPI from 'api/users';
 import { setLoggerState, setLoggerMessage } from 'reducers/loggerReducer';
-import { setUserData } from 'reducers/userReducer';
 
 
 function* registerWorker(action) {

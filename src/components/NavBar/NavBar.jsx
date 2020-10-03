@@ -28,15 +28,19 @@ const Navbar = ({ isAuth, hanldeLogout, handleDrawerToggle }) => {
 	return (
 		<AppBar position="fixed" className={cl({ [classes.appBar]: isAuth })}>
 			<Toolbar>
-				<IconButton
-					color="inherit"
-					aria-label="open drawer"
-					edge="start"
-					onClick={handleDrawerToggle}
-					className={classes.menuButton}
-				>
-					<MenuIcon />
-				</IconButton>
+				{/**burger menu */}
+				{isAuth && (
+					<IconButton
+						color="inherit"
+						aria-label="open drawer"
+						edge="start"
+						onClick={handleDrawerToggle}
+						className={classes.menuButton}
+					>
+						<MenuIcon />
+					</IconButton>
+				)}
+
 				<Typography variant="h6" noWrap>
 					New Born
 				</Typography>

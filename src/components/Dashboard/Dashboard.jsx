@@ -2,7 +2,6 @@ import React from "react";
 
 import Hidden from "@material-ui/core/Hidden";
 import ListItemIcon from "@material-ui/core/ListItemIcon";
-// import Typography from "@material-ui/core/Typography";
 import Drawer from "@material-ui/core/Drawer";
 import { makeStyles } from "@material-ui/core/styles";
 import List from "@material-ui/core/List";
@@ -10,10 +9,10 @@ import ListItem from "@material-ui/core/ListItem";
 import ListItemText from "@material-ui/core/ListItemText";
 
 import Icon from "components/Icon/Icon";
+import FloatingActionButton from '../FloatingActionButton/FloatingActionButton';
+import { Overview } from "containers";
 
 import { NavLink } from "react-router-dom";
-import { Overview } from "containers";
-import FloatingActionButton from '../FloatingActionButton/FloatingActionButton';
 
 const drawerWidth = 200;
 const useStyles = makeStyles((theme) => ({

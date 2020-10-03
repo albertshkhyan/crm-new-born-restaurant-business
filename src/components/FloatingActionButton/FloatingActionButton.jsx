@@ -6,12 +6,11 @@ import Fab from "@material-ui/core/Fab";
 import AddIcon from "@material-ui/icons/Add";
 import FormControlLabel from "@material-ui/core/FormControlLabel";
 import Box from "@material-ui/core/Box";
-
 import Tooltip from "@material-ui/core/Tooltip";
-
 import blue from "@material-ui/core/colors/blue";
 
 import Icon from "components/Icon/Icon";
+
 import { NavLink } from "react-router-dom";
 
 const useStyles = makeStyles((theme) => ({
@@ -21,11 +20,7 @@ const useStyles = makeStyles((theme) => ({
   },
   container: {
     display: "flex",
-    // flexDirection: "column"
   },
-  // paper: {
-  //   margin: theme.spacing(1)
-  // },
   tooltip: {
     backgroundColor: "transparent",
     color: theme.palette.common.black,

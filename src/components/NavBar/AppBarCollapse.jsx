@@ -10,13 +10,12 @@ import MenuItem from '@material-ui/core/MenuItem';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import { makeStyles } from '@material-ui/core/styles';
-
 import NotificationsIcon from '@material-ui/icons/Notifications';
 import AccountCircle from '@material-ui/icons/AccountCircle';
 
 import ButtonAppBarCollapse from './ButtonAppBarCollapse';
-
 import Icon from 'components/Icon/Icon';
+
 import { useSelector } from 'react-redux';
 
 const useStyles = makeStyles((theme) => ({
@@ -77,7 +76,7 @@ const AppBarCollapse = ({ isAuth, onLogout, hanldeLogout }) => {
 			) : (
 				<>
 					<ButtonAppBarCollapse>
-						<MenuItem component={NavLink} to="/logout">
+						<MenuItem component={NavLink} to="/logout" onClick={onLogout}>
 							<Icon width={20} height={20} name="logout" />
 							<Box width={1} align="right">
 								<Typography variant="body1">Sign Out</Typography>

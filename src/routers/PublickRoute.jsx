@@ -3,13 +3,8 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
 
-import _ from 'lodash';
-
 const PublickRoute = ({ component: Component, ...restProps }) => {
 	const isAuthenticated = useSelector((state) => state.logger.isAuthorized);
-	const profile = useSelector((state) => state.users.data); //uid
-
-	const isProfile = _.isEmpty(profile);
 
 	return (
 		<Route

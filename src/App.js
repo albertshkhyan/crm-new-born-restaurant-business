@@ -9,15 +9,12 @@ import { useDispatch, useSelector } from 'react-redux';
 
 // import useRoutes from "hooks/useRoutes";
 import { getyMeAC } from './actions/userActions';
-import { getMeDataTC, setLoggerState } from "reducers/loggerReducer";
-
-// import { Switch, Route, Redirect } from 'react-router-dom';
-// import { SignIn, SignUp } from "containers";
+import { setLoggerState } from "reducers/loggerReducer";
 
 import AppRoutes from './routers/Routes';
+import Layout from 'components/Layout/Layout';
 
 import "./sass/main.scss";
-import Layout from 'components/Layout/Layout';
 
 function App() {
   const logger = useSelector(state => state.logger);
