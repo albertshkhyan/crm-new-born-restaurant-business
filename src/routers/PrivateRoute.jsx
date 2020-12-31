@@ -2,19 +2,27 @@ import React from 'react';
 
 import { useSelector } from 'react-redux';
 import { Route, Redirect } from 'react-router-dom';
+// import Preloader from './../components/Preloader/Preloader';
 
-const PrivateRoute = ({ component: Component, ...restProps }) => {
-	const { isAuthorized, status } = useSelector((state) => state.logger);
+const PrivateRoute = ({ component: Component, isLoading = true, ...restProps }) => {
+	const isAuthorized = useSelector((state) => state.logger.isAuthorized);
 
-	console.log('PrivateRoute work');
-	let isAuth = isAuthorized;
-	if (!isAuth) {
-		isAuth = localStorage.getItem('token');
-	}
-	if (isAuth && status === 'Unauthorized') {
-		localStorage.clear();
-	}
-	return <Route {...restProps} render={(props) => (isAuth ? <Component {...props} /> : <Redirect to="/login" />)} />;
+	// if (!isLoading) {
+	// 	return <Preloader />;
+	// }
+
+	return (
+		<Route
+			{...restProps}
+			render={(props) =>
+				isAuthorized ? (
+					<Component {...props} />
+				) : (
+					<Redirect to={restProps.redirectTo ? restProps.redirectTo : '/login'} />
+				)
+			}
+		/>
+	);
 };
 
 export default PrivateRoute;

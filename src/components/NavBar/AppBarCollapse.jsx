@@ -48,8 +48,10 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const AppBarCollapse = ({ isAuth, onLogout, hanldeLogout }) => {
-	// debugger;
-	const { data: user } = useSelector((state) => state.users);
+	const getUserSelector = (state) => {
+		return state.users.data;
+	};
+	const user = useSelector(getUserSelector);
 
 	const classes = useStyles();
 	return (

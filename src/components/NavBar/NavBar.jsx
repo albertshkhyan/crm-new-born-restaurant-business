@@ -1,6 +1,8 @@
 import React from 'react';
 
-import { AppBar, Toolbar, Typography, makeStyles } from '@material-ui/core';
+import AppBar from '@material-ui/core/AppBar';
+import Toolbar from '@material-ui/core/Toolbar';
+import { makeStyles } from '@material-ui/core/styles';
 
 import AppBarCollapse from './AppBarCollapse';
 import IconButton from '@material-ui/core/IconButton';
@@ -26,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 const NavBar = ({ isAuth, hanldeLogout, handleDrawerToggle }) => {
 	const classes = useStyles();
 	return (
-		<AppBar position="fixed" className={cl({ [classes.appBar]: isAuth })}>
+		<AppBar position="sticky" className={cl({ [classes.appBar]: isAuth })}>
 			<Toolbar>
 				{/**burger menu */}
 				{isAuth && (
@@ -40,10 +42,6 @@ const NavBar = ({ isAuth, hanldeLogout, handleDrawerToggle }) => {
 						<MenuIcon />
 					</IconButton>
 				)}
-
-				<Typography variant="h6" noWrap>
-					New Born
-				</Typography>
 				<AppBarCollapse isAuth={isAuth} onLogout={hanldeLogout} />
 			</Toolbar>
 		</AppBar>

@@ -2,9 +2,12 @@ import SignIn from "./Auth/SignIn";
 import SignUp from "./Auth/SignUp";
 import Overview from "./Overview/Overview";
 import Analytics from "./Analytics/Analytics";
-import Assortiment from "./Assortiment/Assortiment";
+import Category from "./Category/Category";
 import Order from "./Order/Order";
 import History from "./History/History";
+import RoutesCategory from "./Category/RoutesCategory";
+import RoutesOrder from "./Order/RoutesOrder";
+import AuthContainer from "./Auth/AuthContainer";
 
 export {
     Order,
@@ -13,5 +16,8 @@ export {
     History,
     Overview,
     Analytics,
-    Assortiment,
+    Category,
+    RoutesOrder,
+    AuthContainer,
+    RoutesCategory,
 }
