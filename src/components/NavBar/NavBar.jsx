@@ -23,7 +23,7 @@ const useStyles = makeStyles((theme) => ({
 	},
 }));
 
-const Navbar = ({ isAuth, hanldeLogout, handleDrawerToggle }) => {
+const NavBar = ({ isAuth, hanldeLogout, handleDrawerToggle }) => {
 	const classes = useStyles();
 	return (
 		<AppBar position="fixed" className={cl({ [classes.appBar]: isAuth })}>
@@ -50,4 +50,4 @@ const Navbar = ({ isAuth, hanldeLogout, handleDrawerToggle }) => {
 	);
 };
 
-export default Navbar;
+export default NavBar;
