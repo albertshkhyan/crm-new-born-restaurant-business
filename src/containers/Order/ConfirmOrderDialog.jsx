@@ -11,6 +11,8 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
 import OrderTableDialog from './OrderTableDialog';
+import { useSelector } from 'react-redux';
+import { getOrderListSelector } from 'app/selectors/orderSelectors';
 
 const formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
@@ -33,6 +35,10 @@ const useStyles = makeStyles((theme) => ({
 
 function ConfirmOrderDialog(props) {
 	const classes = useStyles();
+
+	const orderTotalPrice = useSelector((state) => state.order.totalPrice);
+
+	const orderList = useSelector(getOrderListSelector);
 
 	const { onClose, value: valueProp, open, ...other } = props;
 	const [value, setValue] = useState(valueProp);
@@ -73,7 +79,7 @@ function ConfirmOrderDialog(props) {
 				<Button autoFocus onClick={handleCancel} color="primary">
 					Cancel
 				</Button>
-				<Button variant="contained" onClick={handleSubmit} color="primary">
+				<Button disabled={!orderList.length} variant="contained" onClick={handleSubmit} color="primary">
 					confirm
 				</Button>
 			</DialogActions>
@@ -85,7 +91,7 @@ function ConfirmOrderDialog(props) {
 				</Box>
 				<Box p={1}>
 					<Typography className={classes.totalCostFormat} variant="subtitle1" gutterBottom>
-						{formatter.format(2500)}
+						{formatter.format(orderTotalPrice)}
 					</Typography>
 				</Box>
 			</Box>

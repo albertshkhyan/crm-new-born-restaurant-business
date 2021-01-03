@@ -5,7 +5,6 @@ import useMediaQuery from "@material-ui/core/useMediaQuery";
 const isRoot = (pathname, root) => {
     const takeLast = pathname.split('/')[2];
     const path = takeLast && takeLast.match(/[0-9]/g);
-    // debugger;
     if (path) {
         return !!(path.length > 0);
     } else if (takeLast === root && !path) {

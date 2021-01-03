@@ -17,7 +17,7 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrderListSelector } from './../../app/selectors/orderSelectors';
-import { removeOrder } from 'app/reducers/orderReducer';
+import { removeOrder, setOrderTotalPrice } from 'app/reducers/orderReducer';
 
 const formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
@@ -73,6 +73,10 @@ export default function OrderTableDialog() {
 	const handleDeleteOrder = (orderPosition) => {
 		console.log('orderPosition', orderPosition);
 		dispatch(removeOrder(orderPosition));
+		dispatch(setOrderTotalPrice());
+
+		//#if count is 1, in this case we must remove item (state.order.list (temparary postions))
+		//## else if count greater then 1 we must just do decrement
 	};
 
 	return (

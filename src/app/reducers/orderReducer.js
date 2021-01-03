@@ -1,6 +1,5 @@
-import { LOGGER_ACTIONS, ORDER_ACTIONS } from "configs/types";
+import { ORDER_ACTIONS } from "configs/types";
 import createReducer from "helpers/createReducer";
-import { List } from '@material-ui/core/List';
 
 const initialState = {
     // date: null,
@@ -8,6 +7,7 @@ const initialState = {
     // userId: null,
     list: [],//{name, quantity, cost},
     totalPrice: 0,
+    isOpendSnackbar: false,
     orderMessage: ""
 }
 
@@ -18,52 +18,55 @@ const initialState = {
  */
 
 const orderReducer = createReducer(initialState, {
-    [ORDER_ACTIONS.ADD_ORDER](state, { payload, orderMessage }) {
-        console.log('orderMessage --------------------- 01', orderMessage);
+    [ORDER_ACTIONS.ADD_ORDER](state, { payload, quantity }) {
         const candiate = state.list.find(position => position._id === payload._id);
         if (candiate) {
             const copyCandidate = { ...candiate }
-            copyCandidate.quantity += payload.quantity;
+            copyCandidate.quantity += quantity;
             return {
                 ...state,
                 list: state.list.map(item => item._id === payload._id ?
                     { ...item, ...copyCandidate } : item),
-                orderMessage: orderMessage + copyCandidate.quantity
             }
         }
         else {
-
+            const copyPayload = { ...payload };
+            copyPayload.quantity = quantity;
             return {
                 ...state,
-                list: [...state.list, payload],
-                orderMessage: orderMessage + payload.quantity
-
+                list: [...state.list, copyPayload],
             }
         }
     },
     [ORDER_ACTIONS.REMOVE_ORDER](state, { payload }) {
-        return {
-            ...state,
-            list: [
-                ...state.list.filter((item) => item._id !== payload._id)
-            ],
+        if (payload.quantity > 1) {
+            return {
+                ...state,
+                list: state.list.map(item => item._id === payload._id ?
+                    { ...item, quantity: item.quantity - 1 } : item),
+            }
+        } else {
+            return {
+                ...state,
+                list: [
+                    ...state.list.filter((item) => item._id !== payload._id)
+                ],
 
+            }
         }
     },
-    // [ORDER_ACTIONS.SET_ORDER_MESSAGE](state, { orderMessage }) {
-    //     return {
-    //         ...state,
-    //         orderMessage
-    //     }
-    // },
+    [ORDER_ACTIONS.SET_ORDER_TOTAL_PRICE](state) {
+        return {
+            ...state,
+            totalPrice: state.list.reduce((sum, item) => sum + (item.cost * item.quantity), 0)
+        }
+    },
 
 });
 
-export const addOrder = (payload, orderMessage) => {
-    console.log('addOrder work --------------------- 00', payload);
-    return ({ type: ORDER_ACTIONS.ADD_ORDER, payload, orderMessage })
-};
+export const addOrder = (payload, quantity) => ({ type: ORDER_ACTIONS.ADD_ORDER, payload, quantity });
 export const removeOrder = (payload) => ({ type: ORDER_ACTIONS.REMOVE_ORDER, payload });
-export const setOrderMessage = (orderMessage) => ({ type: ORDER_ACTIONS.SET_ORDER_MESSAGE, orderMessage });
+export const setOrderTotalPrice = () => ({ type: ORDER_ACTIONS.SET_ORDER_TOTAL_PRICE });
+export const setOpedSnackbar = (payload) => ({ type: ORDER_ACTIONS.IS_OPEN_SNACKBAR, payload });
 
 export default orderReducer;

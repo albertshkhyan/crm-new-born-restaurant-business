@@ -57,7 +57,6 @@ const categoryAPI = {
 
 
         // function onProgress(progressEvent) {
-        //     debugger
         //     // # Do whatever you want with the native progress event
         //     const { loaded, total } = progressEvent;
         //     //# find the percentage we using the formula for calculating the percentage

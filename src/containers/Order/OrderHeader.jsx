@@ -2,16 +2,14 @@ import React from 'react';
 
 import Grid from '@material-ui/core/Grid';
 import Breadcrumbs from 'components/Breadcrumbs/Breadcrumbs';
-import ButtonGroup from '@material-ui/core/ButtonGroup';
 import Button from '@material-ui/core/Button';
-
-import ConfirmOrderDialog from './ConfirmOrderDialog';
-
 import { makeStyles } from '@material-ui/core/styles';
 
-import { useHistory, useLocation, useParams, matchPath } from 'react-router-dom';
+import { useLocation, matchPath } from 'react-router-dom';
+import { useDispatch, useSelector } from 'react-redux';
 
-import Portal from '@material-ui/core/Portal';
+import ConfirmOrderDialog from './ConfirmOrderDialog';
+import { setOrderTotalPrice } from 'app/reducers/orderReducer';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -27,17 +25,14 @@ const useStyles = makeStyles((theme) => ({
 
 export default function OrderHeader({ children }) {
 	const classes = useStyles();
-	const history = useHistory();
 	const location = useLocation();
-	let { id } = useParams();
+
 	const [open, setOpen] = React.useState(false);
 	const [value, setValue] = React.useState('Dione');
 
-	// const match = matchPath(pathname, {
-	// 	path: '/order/:id',
-	// 	exact: true,
-	// 	strict: false,
-	// });
+	const dispatch = useDispatch();
+
+	const orderList = useSelector((state) => state.order.list);
 
 	const match = matchPath(location.pathname, {
 		path: '/order/:id',
@@ -52,19 +47,14 @@ export default function OrderHeader({ children }) {
 		}
 		return null;
 	};
-	/**
-	 		routeData={[
-						{ url: '/category', title: 'Category' },
-						{ url: '/category/new', title: 'Create category' },
-					]}
-	 */
 
 	const handleClose = (newValue) => {
 		setOpen(false);
 	};
 
 	const handleComplete = () => {
-		setOpen(true);
+		dispatch(setOrderTotalPrice());
+		setOpen(orderList.length > 0 ? true : false);
 	};
 
 	return (
@@ -80,7 +70,13 @@ export default function OrderHeader({ children }) {
 					/>
 				</Grid>
 				<Grid item>
-					<Button onClick={handleComplete} fullWidth variant="contained" color="primary">
+					<Button
+						disabled={!(orderList.length > 0)}
+						onClick={handleComplete}
+						fullWidth
+						variant="contained"
+						color="primary"
+					>
 						complete
 					</Button>
 

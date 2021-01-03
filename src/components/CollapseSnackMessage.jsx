@@ -9,16 +9,10 @@ import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
 import IconButton from '@material-ui/core/IconButton';
 import CardActions from '@material-ui/core/CardActions';
-// import { useSnackbar, SnackbarContent } from 'notistack';
-import SnackbarContent from '@material-ui/core/SnackbarContent';
-
-// import LinearWithValueLabel from './LinearWithValueLabel';
 import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import CheckCircleIcon from '@material-ui/icons/CheckCircle';
 
 import classnames from 'classnames';
-
-// import useHover from 'react-use-hover';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -67,10 +61,6 @@ const useStyles = makeStyles((theme) => ({
 
 const CollapseSnackMessage = React.forwardRef(({ handleDismiss, message = 'Some message' }, ref) => {
 	const classes = useStyles();
-	// const [isHovering, hoverProps] = useHover();
-	// console.log("isHovering **", isHovering);
-
-	// const { closeSnackbar } = useSnackbar();
 	const [expanded, setExpanded] = useState(false);
 
 	const handleExpandClick = () => {

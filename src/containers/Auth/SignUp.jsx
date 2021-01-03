@@ -1,10 +1,8 @@
 import React, { useState } from 'react';
 
 import { Formik } from 'formik';
-import { validationSignUp } from './authValidation';
-
 import { useDispatch } from 'react-redux';
-import { registerAC } from 'app/actions/userActions';
+import { useHistory } from 'react-router-dom';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -15,14 +13,14 @@ import IconButton from '@material-ui/core/IconButton';
 import InputAdornment from '@material-ui/core/InputAdornment';
 import Visibility from '@material-ui/icons/Visibility';
 import VisibilityOff from '@material-ui/icons/VisibilityOff';
-
-// import classes from './style.module.css';
-import styles from './styles';
 import { withStyles } from '@material-ui/core';
-import { useHistory } from 'react-router-dom';
+
+import { validationSignUp } from './authValidation';
+import { registerAC } from 'app/actions/userActions';
+
+import styles from './styles';
 
 const SignUp = ({ classes }) => {
-	// debugger
 	const dispatch = useDispatch();
 	const [showPassword, setShowPassword] = useState(false);
 	let history = useHistory();

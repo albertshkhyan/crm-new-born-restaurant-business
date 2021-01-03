@@ -67,7 +67,6 @@ const GreenButton = withStyles((theme) => {
 })(MuiButton);
 
 const CategoryUploader = () => {
-	// console.log('CategoryUploader render');
 	const fileState = useSelector((state) => state.file.fileState);
 	const isDisabled = useSelector((state) => state.file.fileState.isDisabled);
 
@@ -120,11 +119,9 @@ const CategoryUploader = () => {
 
 	const changeInputValueHandler = (event) => {
 		let isDisabled = event.target.value ? false : true;
-		// debugger;
 		if (categoryItem.name === event.target.value) {
 			isDisabled = true;
 		}
-		// debugger;
 		if (originalFile) {
 			isDisabled = false;
 		}
