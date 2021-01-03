@@ -6,36 +6,40 @@ import * as serviceWorker from './serviceWorker';
 import { Provider } from 'react-redux';
 import store from './app/store';
 
+//
+import { SnackbarProvider, useSnackbar } from 'notistack';
+import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
+
+
 import { BrowserRouter } from "react-router-dom";
-// import createHistory from 'history/createBrowserHistory';
-
-// import { browserHistory } from "react-router";
-// import { createBrowserHistory } from "history";
-
-// import { syncHistoryWithStore } from 'react-router-redux'
-
 import { ThemeProvider as MuiThemeProvider } from '@material-ui/core/styles';
 import { ThemeProvider } from "styled-components";
-
-
 import theme from "theme";
 
-// const browserHistory = createHistory();
 
 store.subscribe(() => {
   window.state = store.getState();
 })
-
-// const history = syncHistoryWithStore(browserHistory, store)
-
-
 
 ReactDOM.render(
   <Provider store={store}>
     <BrowserRouter>
       <MuiThemeProvider theme={theme}>
         <ThemeProvider theme={theme}>
-          <App />
+          <SnackbarProvider
+            // preventDuplicate={true}
+            iconVariant={{
+              info: <ShoppingCartIcon style={{ padding: '5px' }} />,
+            }}
+            anchorOrigin={{
+              vertical: 'top',
+              horizontal: 'right',
+            }}
+            maxSnack={3}
+          >
+            <App />
+          </SnackbarProvider>
+
         </ThemeProvider>
       </MuiThemeProvider>
     </BrowserRouter>

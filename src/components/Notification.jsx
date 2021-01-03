@@ -28,21 +28,23 @@ const Notification = ({ anchorOrigin = {}, children }) => {
 	});
 
 	return (
-		<Snackbar
-			open={open}
-			onClose={handleClose}
-			autoHideDuration={3000}
-			TransitionComponent={transition}
-			key={transition ? transition.name : ''}
-		>
-			<Alert elevation={10} variant="filled" severity={status}>
-				{message}
-				<IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
-					<CloseIcon fontSize="small" />
-				</IconButton>
-			</Alert>
-			{/* <CollapseSnackMessage /> */}
-		</Snackbar>
+		<>
+			<Snackbar
+				open={open}
+				onClose={handleClose}
+				autoHideDuration={3000}
+				TransitionComponent={TransitionLeft}
+				key={transition ? transition.name : ''}
+			>
+				<Alert elevation={10} variant="filled" severity={status}>
+					{message}
+					<IconButton size="small" aria-label="close" color="inherit" onClick={handleClose}>
+						<CloseIcon fontSize="small" />
+					</IconButton>
+				</Alert>
+				{/* <CollapseSnackMessage /> */}
+			</Snackbar>
+		</>
 	);
 };
 

@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import PropTypes from 'prop-types';
 import { makeStyles } from '@material-ui/core/styles';
@@ -37,9 +37,12 @@ import { getAllPositionsDataSelector } from './../../app/selectors/positionSelec
 import Preloader from './../../components/Preloader/Preloader';
 import { getCategoryDataSelector } from './../../app/selectors/categorySelectors';
 import { getCategoriesAC } from './../../app/actions/categoryActions';
+/////////////
+import { SnackbarProvider, useSnackbar } from 'notistack';
 
 import { useForm, Controller } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
+import CancelIcon from '@material-ui/icons/Cancel';
 
 import * as yup from 'yup';
 import { addOrder } from './../../app/reducers/orderReducer';
@@ -248,23 +251,50 @@ Row.propTypes = {
 /******************************************************************* */
 
 function CollapsibleTable({ positionData, categoryData }) {
+	const order = useSelector((state) => state.order.list);
+	const orderMessage = useSelector((state) => state.order.orderMessage);
 	const dispatch = useDispatch();
+	const [currentOrderId, setCurrentOrderId] = useState('');
+
+	// Get the previous value (was passed into hook on last render)
+	// const prevOrderid = usePrevious(currentOrderId);
 	/**
 	 *
 	 * @param {quantity: number} - qount of order, minium must be 1
 	 * @param {addedOrder: object} - it's object (collection of row values, on which has been clicked)
 	 */
+
+	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
+
 	const addToOrderHandle = (_, quantity, addedOrder) => {
-		// console.log('event', event);
+		const copyAddedOrder = { ...addedOrder };
+		setCurrentOrderId(copyAddedOrder._id);
 		if (quantity) {
-			const copyAddedOrder = { ...addedOrder };
-			// console.log('copyAddedOrder', copyAddedOrder);
-			dispatch(addOrder(copyAddedOrder));
 			copyAddedOrder.quantity = +quantity;
-			// console.log('submit order!!!!!!');
+			dispatch(addOrder(copyAddedOrder, 'Order added x'));
 		}
-		// console.log('collect value of row ->', addedOrder);
 	};
+
+	const action = (key) => (
+		<IconButton
+			style={{ color: '#fff' }}
+			onClick={() => {
+				closeSnackbar(key);
+			}}
+		>
+			<CancelIcon />
+		</IconButton>
+	);
+
+	useEffect(() => {
+		if (orderMessage) {
+			enqueueSnackbar(orderMessage, {
+				preventDuplicate: true,
+				variant: 'info',
+				action,
+			});
+		}
+	}, [orderMessage]);
 
 	return (
 		<TableContainer component={Paper}>
@@ -281,7 +311,7 @@ function CollapsibleTable({ positionData, categoryData }) {
 				<TableBody>
 					{/* {rows.map((row) => ( */}
 					{positionData.map((row, index) => (
-						<Row addToOrderHandle={addToOrderHandle} key={row.name} row={row} />
+						<Row addToOrderHandle={addToOrderHandle} key={row._id} row={row} />
 					))}
 				</TableBody>
 			</Table>

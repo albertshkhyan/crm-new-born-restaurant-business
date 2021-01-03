@@ -2,6 +2,7 @@ import React from 'react';
 
 import _ from 'lodash';
 import { useDispatch, useSelector } from 'react-redux';
+//
 
 import AppRoutes from './routers/Routes';
 import Layout from 'Layout/Layout';
@@ -19,6 +20,7 @@ function App() {
 	const dispatch = useDispatch();
 	const profile = useSelector(getProfileDataSelector);
 	const initilized = useSelector((state) => state.app.initilized);
+	//
 
 	useOnce(() => {
 		dispatch(initilizeApp(localStorage.token, _.isEmpty(profile)));

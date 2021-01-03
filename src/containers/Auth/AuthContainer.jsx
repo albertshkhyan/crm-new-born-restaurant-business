@@ -1,17 +1,11 @@
 import React, { useEffect, useState } from 'react';
 
 import { makeStyles } from '@material-ui/core';
-
-import PublicRoute from 'routers/PublicRoute';
-
 import Grid from '@material-ui/core/Grid';
 
 import Particles from 'react-particles-js';
 import particlesParams from 'particlesjs-config.json';
-
 import { useLocation } from 'react-router-dom';
-
-import { isRoot } from 'utils';
 
 import { SignIn, SignUp } from 'containers';
 
@@ -68,6 +62,7 @@ const AuthContainer = () => {
 			window.removeEventListener('resize', updateWindowDimensions);
 		};
 	}, []);
+
 	return (
 		<>
 			{/**parent div */}

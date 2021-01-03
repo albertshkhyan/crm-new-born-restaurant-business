@@ -17,7 +17,6 @@ import Grid from '@material-ui/core/Grid';
 import cls from 'classnames';
 
 import { useWidth } from 'utils';
-import orderData from './orderData';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCategoryDataSelector } from './../../app/selectors/categorySelectors';
 import useOnce from './../../hooks/use-once';

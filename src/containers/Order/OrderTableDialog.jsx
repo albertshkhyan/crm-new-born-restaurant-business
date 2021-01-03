@@ -96,15 +96,18 @@ export default function OrderTableDialog() {
 						</TableHead>
 						<TableBody>
 							{listOfOrders &&
-								listOfOrders.map((row, index) => {
+								listOfOrders.map((row) => {
 									return (
-										<TableRow key={index} hover role="checkbox" tabIndex={-1} key={row.code}>
-											{columns.map((column) => {
+										<TableRow key={row._id} hover role="checkbox" tabIndex={-1}>
+											{columns.map((column, index) => {
 												const value = row[column.id];
+												const quantity = row.quantity;
 												return (
-													<TableCell key={column.id} align={column.align}>
+													<TableCell key={index} align={column.align}>
 														{column.format && typeof value === 'number'
 															? column.format(value)
+															: column.id === 'count'
+															? quantity
 															: value}
 													</TableCell>
 												);

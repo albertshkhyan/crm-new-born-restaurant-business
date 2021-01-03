@@ -107,6 +107,7 @@ const Dashboard = ({ mobileOpen, handleDrawerToggle, children }) => {
 							key={id}
 							to={path}
 							primary={title}
+							OrderTableDialog
 							icon={<Icon width={20} height={20} name={icon} />}
 						></ListItemLink>
 					);
