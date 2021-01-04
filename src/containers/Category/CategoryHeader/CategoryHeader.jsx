@@ -12,7 +12,7 @@ import { useHistory, useLocation, matchPath, useParams } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux';
 import ConfirmDialog from 'components/ConfirmDialog';
 import { getCategoryIdSelector } from './../../../app/selectors/categorySelectors';
-import { deleteCategoryAC } from 'app/actions/categoryActions';
+import { deleteCategorySG } from 'app/sagasActions/categoryActions';
 import { isRoot } from 'utils';
 
 const useStyles = makeStyles((theme) => ({
@@ -73,7 +73,7 @@ function CategoryHeader() {
 	};
 
 	const handleAgree = () => {
-		dispatch(deleteCategoryAC(categoryId, (inProgress) => setInProgress(inProgress), navigateTo));
+		dispatch(deleteCategorySG(categoryId, (inProgress) => setInProgress(inProgress), navigateTo));
 
 		setConfirmDialog({
 			...confirmDialog,

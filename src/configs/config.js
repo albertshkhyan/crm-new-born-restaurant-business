@@ -18,7 +18,9 @@ export default {
             positionCreate: "positions",
             positionsGetAll: "positions",
             positionDelete: "positions",
-            positionsUpdate: "positions"
+            positionsUpdate: "positions",
+            //#orders
+            createOrder: "orders"
 
         },
     },

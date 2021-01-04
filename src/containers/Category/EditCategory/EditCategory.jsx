@@ -12,7 +12,7 @@ import { useDispatch } from 'react-redux';
 
 import { useParams } from 'react-router-dom';
 
-import { getCategoryItemAC } from 'app/actions/categoryActions';
+import { getCategoryItemSG } from 'app/sagasActions/categoryActions';
 import AddAndEditCategoryBlock from '../AddAndEditCategoryBlock';
 import { setFileState, setOriginalFileData } from 'app/reducers/fileReducer';
 import Positions from './Positions/Positions';
@@ -41,7 +41,7 @@ function EditCategory({ categoryData }) {
 
 	useOnce(() => {
 		// setTimeout(() => {
-		dispatch(getCategoryItemAC(categoryId, (inProgress) => setInPorgress(inProgress))); //get category by id
+		dispatch(getCategoryItemSG(categoryId, (inProgress) => setInPorgress(inProgress))); //get category by id
 		// }, 2000);
 
 		return () => {

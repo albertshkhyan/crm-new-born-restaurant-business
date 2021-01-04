@@ -8,7 +8,7 @@ import {
 
 import { USER_ACTIONS } from 'configs/types';
 import userAPI from "api/users";
-import { getMeAC } from "app/actions/userActions";
+import { getMeSG } from "app/sagasActions/userActions";
 import { initilize } from "app/reducers/appReducer";
 
 /**
@@ -32,7 +32,7 @@ function* loginWorker(action) {
         yield put(initilize(false));//show preloader
         const { data } = yield call(userAPI.loginUser, action.inputData);//
         yield localStorage.setItem("token", data.token);
-        yield put(getMeAC(data.token));//run new saga worker
+        yield put(getMeSG(data.token));//run new saga worker
 
         // yield put(setUserData(data));
     } catch (error) {

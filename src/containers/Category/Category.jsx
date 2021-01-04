@@ -4,7 +4,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import List from '@material-ui/core/List';
 import ListItemLink from 'components/ListItemLink/ListItemLink';
 import { useDispatch, useSelector } from 'react-redux';
-import { getCategoriesAC } from 'app/actions/categoryActions';
+import { getCategoriesSG } from 'app/sagasActions/categoryActions';
 import useOnce from 'hooks/use-once';
 import { getCategoryDataSelector } from 'app/selectors/categorySelectors';
 import Preloader from 'components/Preloader/Preloader';
@@ -30,7 +30,7 @@ const Category = () => {
 
 	useOnce(() => {
 		// setTimeout(() => {
-		dispatch(getCategoriesAC((inProgress) => setInPorgress(inProgress)));
+		dispatch(getCategoriesSG((inProgress) => setInPorgress(inProgress)));
 		// }, 3000);
 	});
 

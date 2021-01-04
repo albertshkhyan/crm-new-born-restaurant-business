@@ -20,7 +20,7 @@ import { useWidth } from 'utils';
 import { useSelector, useDispatch } from 'react-redux';
 import { getCategoryDataSelector } from './../../app/selectors/categorySelectors';
 import useOnce from './../../hooks/use-once';
-import { getCategoriesAC } from './../../app/actions/categoryActions';
+import { getCategoriesSG } from '../../app/sagasActions/categoryActions';
 import Preloader from './../../components/Preloader/Preloader';
 
 import imageNotFound from 'assets/images/no-image-found.png';
@@ -88,7 +88,7 @@ const Order = () => {
 
 	useOnce(() => {
 		// setTimeout(() => {
-		dispatch(getCategoriesAC((inProgress) => setInPorgress(inProgress)));
+		dispatch(getCategoriesSG((inProgress) => setInPorgress(inProgress)));
 		// }, 3000);
 	});
 

@@ -14,7 +14,7 @@ import { useForm } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
 import { useDispatch } from 'react-redux';
-import { createPositionsAC, updatePositionsAC } from 'app/actions/positionActions';
+import { createPositionsSG, updatePositionsSG } from 'app/sagasActions/positionActions';
 
 const schema = yup.object().shape({
 	name: yup
@@ -57,13 +57,13 @@ export default function DialogPosition({ positionItem, categoryId, positionId, h
 			//#CREATE POSITION - whene we create position we send in server categoryId
 			newPositionData.categoryId = categoryId;
 			handleClose();
-			dispatch(createPositionsAC(newPositionData));
+			dispatch(createPositionsSG(newPositionData));
 		} else if (positionId && positionItem) {
 			//#UPDATE POSITION - whene we update position we send in server positionId
 			const updatedPositionData = { ...data }; //positionBody
 			if (isDirty) {
 				//#if field are changed
-				dispatch(updatePositionsAC(positionId, updatedPositionData));
+				dispatch(updatePositionsSG(positionId, updatedPositionData));
 			}
 			handleClose();
 		}

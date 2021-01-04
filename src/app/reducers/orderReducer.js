@@ -12,7 +12,7 @@ const initialState = {
 }
 
 /**   
- * ADD_ORDER
+ * ADD_ORDER 
  * REMOVE_ORDER
  * CLEAR_ORDER
  */
@@ -67,6 +67,5 @@ const orderReducer = createReducer(initialState, {
 export const addOrder = (payload, quantity) => ({ type: ORDER_ACTIONS.ADD_ORDER, payload, quantity });
 export const removeOrder = (payload) => ({ type: ORDER_ACTIONS.REMOVE_ORDER, payload });
 export const setOrderTotalPrice = () => ({ type: ORDER_ACTIONS.SET_ORDER_TOTAL_PRICE });
-export const setOpedSnackbar = (payload) => ({ type: ORDER_ACTIONS.IS_OPEN_SNACKBAR, payload });
 
 export default orderReducer;

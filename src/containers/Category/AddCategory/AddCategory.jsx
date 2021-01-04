@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 
 import AddAndEditCategoryBlock from '../AddAndEditCategoryBlock';
 import { useDispatch } from 'react-redux';
-import { createCategorymAC } from '../../../app/actions/categoryActions';
+import { createCategorymSG } from '../../../app/sagasActions/categoryActions';
 import { setOriginalFileData, setFileState } from 'app/reducers/fileReducer';
 
 function AddCategory({ categoryItem }) {
@@ -16,7 +16,7 @@ function AddCategory({ categoryItem }) {
 	useEffect(() => {
 		if (createdCategoryData) {
 			const { categoryName, selectedFile } = createdCategoryData;
-			dispatch(createCategorymAC(categoryName, selectedFile)); //get category by id
+			dispatch(createCategorymSG(categoryName, selectedFile)); //get category by id
 		}
 
 		return () => {

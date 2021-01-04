@@ -5,7 +5,7 @@ import Dashboard from 'components/Dashboard/Dashboard';
 import NavBar from 'components/Navbar/NavBar';
 import FloatingActionButton from 'components/FloatingActionButton/FloatingActionButton';
 
-import { logoutAC } from 'app/actions/userActions';
+import { logoutSG } from 'app/sagasActions/userActions';
 
 import { getLoggerDataSelector } from './../app/selectors/loggerSelectors';
 
@@ -15,7 +15,7 @@ const Layout = ({ children }) => {
 	const dispatch = useDispatch();
 
 	const computedHanldeLogout = useCallback(() => {
-		dispatch(logoutAC());
+		dispatch(logoutSG());
 	}, [dispatch]);
 
 	const computedHandleDrawerToggle = useCallback(() => {

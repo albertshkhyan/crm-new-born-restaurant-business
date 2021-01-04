@@ -5,11 +5,11 @@ import { useParams } from 'react-router';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useOnce from 'hooks/use-once';
-import { getAllPositionsAC } from 'app/actions/positionActions';
+import { getAllPositionsSG } from 'app/sagasActions/positionActions';
 import { getAllPositionsDataSelector } from 'app/selectors/positionSelector';
 import Preloader from 'components/Preloader/Preloader';
 import { getCategoryDataSelector } from 'app/selectors/categorySelectors';
-import { getCategoriesAC } from 'app/actions/categoryActions';
+import { getCategoriesSG } from 'app/sagasActions/categoryActions';
 import CollapsibleTable from './CollapsibleTable';
 
 const AddOrder = () => {
@@ -22,8 +22,8 @@ const AddOrder = () => {
 	let { id: categoryId } = useParams();
 
 	useOnce(() => {
-		dispatch(getAllPositionsAC(categoryId, (inProgress) => setInPorgress(inProgress)));
-		dispatch(getCategoriesAC((inProgress) => setInPorgress(inProgress)));
+		dispatch(getAllPositionsSG(categoryId, (inProgress) => setInPorgress(inProgress)));
+		dispatch(getCategoriesSG((inProgress) => setInPorgress(inProgress)));
 	});
 
 	if (inProgress) return <Preloader />;
