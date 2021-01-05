@@ -61,11 +61,19 @@ const orderReducer = createReducer(initialState, {
             totalPrice: state.list.reduce((sum, item) => sum + (item.cost * item.quantity), 0)
         }
     },
+    [ORDER_ACTIONS.CLEAR_ORDER](state) {
+        return {
+            ...state,
+            list: [],
+            totalPrice: 0
+        }
+    },
 
 });
 
 export const addOrder = (payload, quantity) => ({ type: ORDER_ACTIONS.ADD_ORDER, payload, quantity });
 export const removeOrder = (payload) => ({ type: ORDER_ACTIONS.REMOVE_ORDER, payload });
 export const setOrderTotalPrice = () => ({ type: ORDER_ACTIONS.SET_ORDER_TOTAL_PRICE });
+export const clearOrder = () => ({ type: ORDER_ACTIONS.CLEAR_ORDER });
 
 export default orderReducer;

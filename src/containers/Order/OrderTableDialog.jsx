@@ -18,6 +18,7 @@ import Typography from '@material-ui/core/Typography';
 import { useDispatch, useSelector } from 'react-redux';
 import { getOrderListSelector } from './../../app/selectors/orderSelectors';
 import { removeOrder, setOrderTotalPrice } from 'app/reducers/orderReducer';
+import { useSnackbar } from 'notistack';
 
 const formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
@@ -69,8 +70,10 @@ export default function OrderTableDialog() {
 	const classes = useStyles();
 	const listOfOrders = useSelector(getOrderListSelector);
 	const dispatch = useDispatch();
+	const { closeSnackbar } = useSnackbar();
 
 	const handleDeleteOrder = (orderPosition) => {
+		closeSnackbar();
 		console.log('orderPosition', orderPosition);
 		dispatch(removeOrder(orderPosition));
 		dispatch(setOrderTotalPrice());

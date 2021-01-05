@@ -1,6 +1,6 @@
 import { ORDER_ACTIONS } from "configs/types";
 
-export const createOrderSG = callback => ({
+export const createOrderSG = orderData => ({
     type: ORDER_ACTIONS.CREATE_ORDER_SAGA,
-    setInPorgress: callback
+    orderData
 });

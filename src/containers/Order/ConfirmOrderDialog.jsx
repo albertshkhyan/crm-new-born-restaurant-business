@@ -11,8 +11,9 @@ import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 
 import OrderTableDialog from './OrderTableDialog';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import { getOrderListSelector } from 'app/selectors/orderSelectors';
+import { createOrderSG } from 'app/sagasActions/orderActions';
 
 const formatter = new Intl.NumberFormat('en-US', {
 	style: 'currency',
@@ -39,6 +40,7 @@ function ConfirmOrderDialog(props) {
 	const orderTotalPrice = useSelector((state) => state.order.totalPrice);
 
 	const orderList = useSelector(getOrderListSelector);
+	const dispatch = useDispatch();
 
 	const { onClose, value: valueProp, open, ...other } = props;
 	const [value, setValue] = useState(valueProp);
@@ -53,7 +55,8 @@ function ConfirmOrderDialog(props) {
 		onClose();
 	};
 
-	const handleSubmit = () => {
+	const handleConfirm = () => {
+		dispatch(createOrderSG(orderList));
 		onClose(value);
 	};
 
@@ -79,7 +82,7 @@ function ConfirmOrderDialog(props) {
 				<Button autoFocus onClick={handleCancel} color="primary">
 					Cancel
 				</Button>
-				<Button disabled={!orderList.length} variant="contained" onClick={handleSubmit} color="primary">
+				<Button disabled={!orderList.length} variant="contained" onClick={handleConfirm} color="primary">
 					confirm
 				</Button>
 			</DialogActions>
