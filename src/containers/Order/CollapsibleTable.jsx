@@ -55,6 +55,8 @@ const CollapsibleTable = ({ positionData, categoryData }) => {
 	const prevOrderid = usePrevious(currentOrderId);
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
+	const isOpenEnqueSnackBar = useSelector((state) => state.order.isOpenEnqueSnackBar);
+
 	const addToOrderHandle = (_, quantity, addedOrder) => {
 		const copyAddedOrder = { ...addedOrder };
 		setCurrentOrderId(copyAddedOrder._id);
@@ -81,14 +83,15 @@ const CollapsibleTable = ({ positionData, categoryData }) => {
 
 	useEffect(() => {
 		const candiate = computedOrder.find((position) => position._id === currentOrderId);
-		if (candiate) {
+		//we must open with store ?
+		if (candiate && isOpenEnqueSnackBar) {
 			const message = `Order added x${candiate.quantity}`;
 			enqueueSnackbar(message, {
 				variant: 'info',
 				action,
 			});
 		}
-	}, [computedOrder]);
+	}, [computedOrder, isOpenEnqueSnackBar]);
 
 	return (
 		<TableContainer component={Paper}>
