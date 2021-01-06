@@ -47,8 +47,6 @@ export default function OrderTableDialog() {
 	const dispatch = useDispatch();
 
 	const handleDeleteOrder = (orderPosition) => {
-		// closeSnackbar();
-		console.log('orderPosition', orderPosition);
 		dispatch(removeOrder(orderPosition));
 		dispatch(setOrderTotalPrice());
 
