@@ -106,7 +106,6 @@ function ConfirmOrderDialog(props) {
 ConfirmOrderDialog.propTypes = {
 	onClose: PropTypes.func.isRequired,
 	open: PropTypes.bool.isRequired,
-	value: PropTypes.string.isRequired,
 };
 
 export default ConfirmOrderDialog;
