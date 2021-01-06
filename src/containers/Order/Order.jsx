@@ -11,22 +11,19 @@ import ViewModuleIcon from '@material-ui/icons/ViewModule';
 import ViewListIcon from '@material-ui/icons/ViewList';
 import { isWidthUp } from '@material-ui/core/withWidth';
 import Button from '@material-ui/core/Button';
-import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 
 import cls from 'classnames';
 
 import { useWidth } from 'utils';
 import { useSelector, useDispatch } from 'react-redux';
-import { getCategoryDataSelector } from './../../app/selectors/categorySelectors';
-import useOnce from './../../hooks/use-once';
+import { getCategoryDataSelector } from 'app/selectors/categorySelectors';
+import useOnce from 'hooks/use-once';
 import { getCategoriesSG } from '../../app/sagasActions/categoryActions';
-import Preloader from './../../components/Preloader/Preloader';
+import Preloader from 'components/Preloader/Preloader';
 
 import imageNotFound from 'assets/images/no-image-found.png';
-import Breadcrumbs from 'components/Breadcrumbs/Breadcrumbs';
-import { NavLink, useHistory } from 'react-router-dom';
-import ListItemLink from './../../components/ListItemLink/ListItemLink';
+import { NavLink } from 'react-router-dom';
 
 const useStyles = makeStyles((theme) => ({
 	root: {
@@ -68,8 +65,6 @@ const useStyles = makeStyles((theme) => ({
 }));
 
 const Order = () => {
-	const history = useHistory();
-
 	const classes = useStyles();
 	const width = useWidth();
 	const dispatch = useDispatch();
@@ -81,10 +76,6 @@ const Order = () => {
 		listView: false,
 		gridView: true,
 	});
-
-	const navigateTo = (to) => {
-		history.push(to);
-	};
 
 	useOnce(() => {
 		// setTimeout(() => {

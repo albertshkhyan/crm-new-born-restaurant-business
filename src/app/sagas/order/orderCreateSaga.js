@@ -7,32 +7,32 @@ import orderAPI from 'api/orders';
 import { setLoggerMessage, setLoggerState } from "app/reducers/loggerReducer";
 import { clearOrder } from "app/reducers/orderReducer";
 
-function* createOrderWorker({ orderData }) {
-    console.log('orderWorker📞📞📞📞');
-    // console.log('orderData -------------------- 000', orderData);
+function* createOrderWorker({ orderData, setInProgress }) {
     const copyOrderData = JSON.parse(JSON.stringify(orderData));//deep copy
     let updatedOrderData = copyOrderData.map(item => {
         delete item._id;
         // delete item.__v;//
         return item;
     });
-    // console.log('updatedOrderData', updatedOrderData);
 
     try {
+        // yield put(setOrderIsSubmiting(true));
+        setInProgress(true);
+        // yield delay(3000);
         const data = yield call(orderAPI.createOrder, {
             list: updatedOrderData
         });
-        console.log('data ---------- 1', data);
         if (data.status === 201) {
-            yield put(setLoggerState({ open: true, status: "success" }));
+            (setLoggerState({ open: true, status: "success" }));
             yield put(setLoggerMessage(`Order №${data.data.order} has been added.`));
             yield put(clearOrder());
         }
+        setInProgress(false);
+
         // yield put(setLoggerState({ isAuthorized: true }));
         // yield put(setUserData(data.data));
     }
     catch (error) {
-        console.log('order error -----------', error);
         yield put(setLoggerState({ open: true, status: "error" }));
         yield put(setLoggerMessage(error.message));
     }

@@ -9,7 +9,7 @@ const initialState = {
     totalPrice: 0,
     isOpendSnackbar: false,
     orderMessage: "",
-    isOpenEnqueSnackBar: false
+    isOpenEnqueSnackBar: false,
 }
 
 /**   
@@ -83,6 +83,6 @@ export const addOrder = (payload, quantity) => ({ type: ORDER_ACTIONS.ADD_ORDER,
 export const removeOrder = (payload) => ({ type: ORDER_ACTIONS.REMOVE_ORDER, payload });
 export const setOrderTotalPrice = () => ({ type: ORDER_ACTIONS.SET_ORDER_TOTAL_PRICE });
 export const clearOrder = () => ({ type: ORDER_ACTIONS.CLEAR_ORDER });
-export const openEnqueSnackBar = () => ({ type: ORDER_ACTIONS.OPEN_ENQUE_SNACK_BAR });
+// export const openEnqueSnackBar = () => ({ type: ORDER_ACTIONS.OPEN_ENQUE_SNACK_BAR });
 
 export default orderReducer;

@@ -9,7 +9,6 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getLoggerDataSelector } from './../app/selectors/loggerSelectors';
 import { setLoggerState } from 'app/reducers/loggerReducer';
 import useOnce from './../hooks/use-once';
-import CollapseSnackMessage from './CollapseSnackMessage';
 
 function TransitionLeft(props) {
 	return <Slide {...props} direction="left" />;
@@ -42,7 +41,6 @@ const Notification = ({ anchorOrigin = {}, children }) => {
 						<CloseIcon fontSize="small" />
 					</IconButton>
 				</Alert>
-				{/* <CollapseSnackMessage /> */}
 			</Snackbar>
 		</>
 	);

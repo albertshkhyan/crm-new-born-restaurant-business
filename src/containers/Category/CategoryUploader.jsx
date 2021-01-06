@@ -87,14 +87,11 @@ const CategoryUploader = () => {
 		watch,
 		errors,
 		setValue,
-		formState: { isSubmitting, isDirty },
+		formState: { isSubmitting },
 	} = useForm({
 		mode: 'onChange',
 	});
 
-	// console.log('!isDirty', !isDirty);
-	// console.log('isDirty', isDirty);
-	// console.log('isDisabled', isDisabled);
 	const handleClickShowClose = () => {
 		setValue('categoryName', '');
 	};

@@ -82,7 +82,6 @@ function Row({ row, addToOrderHandle }) {
 		watch,
 		errors,
 		control,
-		handleSubmit,
 		formState: { isValid },
 	} = useForm({
 		mode: 'onChange',
@@ -93,8 +92,6 @@ function Row({ row, addToOrderHandle }) {
 
 	const [open, setOpen] = useState(false);
 	const classes = useRowStyles();
-
-	const onSubmit = (data) => console.log('on submit data ------------ 0', data);
 
 	return (
 		<>

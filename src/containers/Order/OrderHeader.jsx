@@ -28,7 +28,7 @@ export default function OrderHeader({ children }) {
 	const location = useLocation();
 
 	const [open, setOpen] = React.useState(false);
-	const [value, setValue] = React.useState('Dione');
+	// const [value, setValue] = React.useState('Dione');
 
 	const dispatch = useDispatch();
 
@@ -86,7 +86,7 @@ export default function OrderHeader({ children }) {
 						keepMounted
 						open={open}
 						onClose={handleClose}
-						value={value}
+						// value={value}
 					/>
 					{/* </Portal> */}
 				</Grid>

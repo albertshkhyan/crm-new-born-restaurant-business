@@ -1,19 +1,18 @@
 import React, { useState } from 'react';
 
-import DeleteIcon from '@material-ui/icons/Delete';
-import Grid from '@material-ui/core/Grid';
 import Button from '@material-ui/core/Button';
+import Grid from '@material-ui/core/Grid';
 import { makeStyles } from '@material-ui/core/styles';
 import Typography from '@material-ui/core/Typography';
-
-import Breadcrumbs from 'components/Breadcrumbs/Breadcrumbs';
-import { useHistory, useLocation, matchPath, useParams } from 'react-router-dom';
+import DeleteIcon from '@material-ui/icons/Delete';
 
 import { useDispatch, useSelector } from 'react-redux';
-import ConfirmDialog from 'components/ConfirmDialog';
-import { getCategoryIdSelector } from './../../../app/selectors/categorySelectors';
+import { matchPath, useHistory, useLocation } from 'react-router-dom';
+
 import { deleteCategorySG } from 'app/sagasActions/categoryActions';
-import { isRoot } from 'utils';
+import { getCategoryIdSelector } from 'app/selectors/categorySelectors';
+import Breadcrumbs from 'components/Breadcrumbs/Breadcrumbs';
+import ConfirmDialog from 'components/ConfirmDialog';
 
 const useStyles = makeStyles((theme) => ({
 	root: {

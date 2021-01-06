@@ -5,7 +5,7 @@ import Link from '@material-ui/core/Link';
 import Box from '@material-ui/core/Box';
 import Typography from '@material-ui/core/Typography';
 import { default as MUIBreadcrumbs } from '@material-ui/core/Breadcrumbs';
-import { Link as RouterLink, useLocation } from 'react-router-dom';
+import { Link as RouterLink } from 'react-router-dom';
 
 import NavigateNextIcon from '@material-ui/icons/NavigateNext';
 
@@ -28,7 +28,7 @@ const useStyles = makeStyles((theme) => ({
 
 const LinkRouter = (props) => <Link {...props} component={RouterLink} />;
 
-const Breadcrumbs = ({ routeData, defaultTitle = '', pathname = '' }) => {
+const Breadcrumbs = ({ routeData, pathname = '' }) => {
 	const pathnames = pathname.split('/').filter((x) => x);
 	const classes = useStyles();
 
@@ -43,8 +43,9 @@ const Breadcrumbs = ({ routeData, defaultTitle = '', pathname = '' }) => {
 							let title = '';
 							routeData.map((r) => {
 								if (to === r.url) {
-									title = r.title;
+									return (title = r.title);
 								}
+								return r;
 							});
 							return title;
 						},

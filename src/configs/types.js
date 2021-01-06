@@ -68,7 +68,6 @@ export const ORDER_ACTIONS = {
     CLEAR_ORDER: "newborn/order/CLEAR_ORDER",
     SET_ORDER_TOTAL_PRICE: "newborn/order/SET_ORDER_TOTAL_PRICE",
     CREATE_ORDER_SAGA: "newborn/order/CREATE_ORDER_SAGA",
-    OPEN_ENQUE_SNACK_BAR: "newborn/order/OPEN_ENQUE_SNACK_BAR",
 }
 
 export const FILE_ACTIONS = {

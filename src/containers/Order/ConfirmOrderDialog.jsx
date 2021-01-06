@@ -44,6 +44,7 @@ function ConfirmOrderDialog(props) {
 
 	const { onClose, value: valueProp, open, ...other } = props;
 	const [value, setValue] = useState(valueProp);
+	const [inProgress, setInPorgress] = useState(false);
 
 	useEffect(() => {
 		if (!open) {
@@ -56,13 +57,8 @@ function ConfirmOrderDialog(props) {
 	};
 
 	const handleConfirm = () => {
-		dispatch(createOrderSG(orderList));
+		dispatch(createOrderSG(orderList, (inProgress) => setInPorgress(inProgress)));
 		onClose(value);
-	};
-
-	const handleChange = (event) => {
-		console.log('handleChange work');
-		setValue(event.target.value);
 	};
 
 	return (
@@ -82,7 +78,12 @@ function ConfirmOrderDialog(props) {
 				<Button autoFocus onClick={handleCancel} color="primary">
 					Cancel
 				</Button>
-				<Button disabled={!orderList.length} variant="contained" onClick={handleConfirm} color="primary">
+				<Button
+					disabled={!orderList.length || inProgress}
+					variant="contained"
+					onClick={handleConfirm}
+					color="primary"
+				>
 					confirm
 				</Button>
 			</DialogActions>

@@ -50,7 +50,6 @@ const Positions = ({ categoryId }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const positionData = useSelector(getAllPositionsDataSelector);
-	const isLoading = useSelector((state) => state.positions.isLoading);
 	const positionItem = useSelector((state) => state.positions.positionItem);
 
 	const [confirmDialog, setConfirmDialog] = useState({
