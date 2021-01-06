@@ -1,21 +1,19 @@
 import React, { useEffect, useRef, useState } from 'react';
 
-import { useDispatch, useSelector } from 'react-redux';
-import { getOrderListSelector } from 'app/selectors/orderSelectors';
-import { useSnackbar } from 'notistack';
-
-import { addOrder } from './../../app/reducers/orderReducer';
-
+import { withStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
+import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
+import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import Paper from '@material-ui/core/Paper';
-import CancelIcon from '@material-ui/icons/Cancel';
-import { withStyles } from '@material-ui/core';
-import TableCell from '@material-ui/core/TableCell';
 import TableRow from '@material-ui/core/TableRow';
+import CancelIcon from '@material-ui/icons/Cancel';
+import { getOrderListSelector } from 'app/selectors/orderSelectors';
+import { useSnackbar } from 'notistack';
+import { useDispatch, useSelector } from 'react-redux';
+import { addOrder } from 'app/reducers/orderReducer';
 import Row from './Row';
 
 // Hook
@@ -55,6 +53,8 @@ const CollapsibleTable = ({ positionData, categoryData }) => {
 	const prevOrderid = usePrevious(currentOrderId);
 	const { enqueueSnackbar, closeSnackbar } = useSnackbar();
 
+	const isOpenEnqueSnackBar = useSelector((state) => state.order.isOpenEnqueSnackBar);
+
 	const addToOrderHandle = (_, quantity, addedOrder) => {
 		const copyAddedOrder = { ...addedOrder };
 		setCurrentOrderId(copyAddedOrder._id);
@@ -68,27 +68,26 @@ const CollapsibleTable = ({ positionData, categoryData }) => {
 		}
 	};
 
-	const action = (key) => (
-		<IconButton
-			style={{ color: '#fff' }}
-			onClick={() => {
-				closeSnackbar(key);
-			}}
-		>
-			<CancelIcon />
-		</IconButton>
-	);
-
 	useEffect(() => {
 		const candiate = computedOrder.find((position) => position._id === currentOrderId);
-		if (candiate) {
+		//we must open with store ?
+		if (candiate && isOpenEnqueSnackBar) {
 			const message = `Order added x${candiate.quantity}`;
 			enqueueSnackbar(message, {
 				variant: 'info',
-				action,
+				action: (key) => (
+					<IconButton
+						style={{ color: '#fff' }}
+						onClick={() => {
+							closeSnackbar(key);
+						}}
+					>
+						<CancelIcon />
+					</IconButton>
+				),
 			});
 		}
-	}, [computedOrder]);
+	}, [computedOrder, currentOrderId, enqueueSnackbar, closeSnackbar, isOpenEnqueSnackBar]);
 
 	return (
 		<TableContainer component={Paper}>

@@ -4,7 +4,7 @@ import { Formik } from 'formik';
 import { validationSignIn } from './authValidation';
 
 import { useDispatch } from 'react-redux';
-import { loginAC } from 'app/actions/userActions';
+import { loginSG } from 'app/sagasActions/userActions';
 
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
@@ -28,7 +28,7 @@ const SignIn = ({ classes }) => {
 		setShowPassword(!showPassword);
 	};
 	const handleSubmit = (values, actions) => {
-		dispatch(loginAC(values)); //give error because change of state occurd after that we do redirect, then we try change state in unmounted component - https://github.com/formium/formik/issues/2430
+		dispatch(loginSG(values)); //give error because change of state occurd after that we do redirect, then we try change state in unmounted component - https://github.com/formium/formik/issues/2430
 		// actions.setSubmitting(false); //disabled={isSubmitting} - give error
 	};
 

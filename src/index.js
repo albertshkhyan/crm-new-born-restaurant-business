@@ -7,7 +7,7 @@ import { Provider } from 'react-redux';
 import store from './app/store';
 
 //
-import { SnackbarProvider, useSnackbar } from 'notistack';
+import { SnackbarProvider } from 'notistack';
 import ShoppingCartIcon from '@material-ui/icons/ShoppingCart';
 
 

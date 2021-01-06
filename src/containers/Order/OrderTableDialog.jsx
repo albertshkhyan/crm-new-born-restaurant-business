@@ -1,34 +1,20 @@
 import React from 'react';
 
+import { removeOrder, setOrderTotalPrice } from 'app/reducers/orderReducer';
+import { getOrderListSelector } from 'app/selectors/orderSelectors';
+
+import { useDispatch, useSelector } from 'react-redux';
+
 import { makeStyles } from '@material-ui/core/styles';
+import DeleteIcon from '@material-ui/icons/Delete';
+import IconButton from '@material-ui/core/IconButton';
 import Paper from '@material-ui/core/Paper';
 import Table from '@material-ui/core/Table';
 import TableBody from '@material-ui/core/TableBody';
 import TableCell from '@material-ui/core/TableCell';
 import TableContainer from '@material-ui/core/TableContainer';
 import TableHead from '@material-ui/core/TableHead';
-import TablePagination from '@material-ui/core/TablePagination';
 import TableRow from '@material-ui/core/TableRow';
-
-import DeleteIcon from '@material-ui/icons/Delete';
-import IconButton from '@material-ui/core/IconButton';
-import Box from '@material-ui/core/Box';
-
-import Typography from '@material-ui/core/Typography';
-import { useDispatch, useSelector } from 'react-redux';
-import { getOrderListSelector } from './../../app/selectors/orderSelectors';
-import { removeOrder, setOrderTotalPrice } from 'app/reducers/orderReducer';
-
-const formatter = new Intl.NumberFormat('en-US', {
-	style: 'currency',
-	currency: 'USD',
-
-	// These options are needed to round to whole numbers if that's what you want.
-	//minimumFractionDigits: 0, // (this suffices for whole numbers, but will print 2500.10 as $2,500.1)
-	//maximumFractionDigits: 0, // (causes 2500.99 to be printed as $2,501)
-});
-
-// formatter.format(2500); /* $2,500.00 */
 
 const columns = [
 	{ id: 'name', label: 'Name', minWidth: 120 },
@@ -46,16 +32,6 @@ const columns = [
 	},
 ];
 
-function createData(name, count, cost) {
-	return { name, count, cost };
-}
-
-const rows = [
-	createData('beer', 1324171354, 3287263),
-	createData('sprite', 1403500365, 9596961),
-	createData('Koko', 60483973, 301340),
-];
-
 const useStyles = makeStyles({
 	root: {
 		width: '100%',
@@ -71,6 +47,7 @@ export default function OrderTableDialog() {
 	const dispatch = useDispatch();
 
 	const handleDeleteOrder = (orderPosition) => {
+		// closeSnackbar();
 		console.log('orderPosition', orderPosition);
 		dispatch(removeOrder(orderPosition));
 		dispatch(setOrderTotalPrice());

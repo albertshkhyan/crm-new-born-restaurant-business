@@ -5,7 +5,7 @@ import Dashboard from 'components/Dashboard/Dashboard';
 import NavBar from 'components/Navbar/NavBar';
 import FloatingActionButton from 'components/FloatingActionButton/FloatingActionButton';
 
-import { logoutAC } from 'actions/userActions';
+import { logoutSG } from 'actions/userActions';
 
 const Layout = ({ children }) => {
 	const logger = useSelector((state) => state.logger);
@@ -16,7 +16,7 @@ const Layout = ({ children }) => {
 	};
 
 	const hanldeLogout = () => {
-		dispatch(logoutAC());
+		dispatch(logoutSG());
 	};
 	return (
 		<>

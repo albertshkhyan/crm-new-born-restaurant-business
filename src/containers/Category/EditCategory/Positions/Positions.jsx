@@ -13,7 +13,7 @@ import ListItemSecondaryAction from '@material-ui/core/ListItemSecondaryAction';
 import { useDispatch, useSelector } from 'react-redux';
 
 import useOnce from 'hooks/use-once';
-import { getAllPositionsAC, deletePositionsAC } from 'app/actions/positionActions';
+import { getAllPositionsSG, deletePositionsSG } from 'app/sagasActions/positionActions';
 import Preloader from 'components/Preloader/Preloader';
 import { getAllPositionsDataSelector } from 'app/selectors/positionSelector';
 import ConfirmDialog from 'components/ConfirmDialog';
@@ -50,7 +50,6 @@ const Positions = ({ categoryId }) => {
 	const classes = useStyles();
 	const dispatch = useDispatch();
 	const positionData = useSelector(getAllPositionsDataSelector);
-	const isLoading = useSelector((state) => state.positions.isLoading);
 	const positionItem = useSelector((state) => state.positions.positionItem);
 
 	const [confirmDialog, setConfirmDialog] = useState({
@@ -80,13 +79,13 @@ const Positions = ({ categoryId }) => {
 
 	const handleAgree = () => {
 		if (confirmDialog.positionId && categoryId) {
-			dispatch(deletePositionsAC(confirmDialog.positionId, categoryId));
+			dispatch(deletePositionsSG(confirmDialog.positionId, categoryId));
 		}
 		setConfirmDialog({ ...confirmDialog, isOpen: false });
 	};
 
 	useOnce(() => {
-		dispatch(getAllPositionsAC(categoryId, (inProgress) => setInPorgress(inProgress)));
+		dispatch(getAllPositionsSG(categoryId, (inProgress) => setInPorgress(inProgress)));
 	});
 
 	// const computedDialogPosition = useCallback(() => {

@@ -13,7 +13,6 @@ import useOnce from './hooks/use-once';
 
 import { getProfileDataSelector } from './app/selectors/userSelector';
 
-import CollapseSnackMessage from './components/CollapseSnackMessage';
 import './sass/main.scss';
 
 function App() {
@@ -33,7 +32,6 @@ function App() {
 				<AppRoutes />
 			</Layout>
 			<Notification />
-			{/* <CollapseSnackMessage /> */}
 		</>
 	);
 }

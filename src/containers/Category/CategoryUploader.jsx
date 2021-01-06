@@ -17,7 +17,7 @@ import _ from 'lodash';
 import { useLocation, useParams } from 'react-router-dom';
 import { useDispatch, useSelector } from 'react-redux';
 
-import { createCategorymAC, updateCategoryAC } from 'app/actions/categoryActions';
+import { createCategorymSG, updateCategorySG } from 'app/sagasActions/categoryActions';
 import { getCategoryItemSelector } from 'app/selectors/categorySelectors';
 import { setOriginalFileData, setFileState, setShowEditModal } from 'app/reducers/fileReducer';
 
@@ -87,14 +87,11 @@ const CategoryUploader = () => {
 		watch,
 		errors,
 		setValue,
-		formState: { isSubmitting, isDirty },
+		formState: { isSubmitting },
 	} = useForm({
 		mode: 'onChange',
 	});
 
-	// console.log('!isDirty', !isDirty);
-	// console.log('isDirty', isDirty);
-	// console.log('isDisabled', isDisabled);
 	const handleClickShowClose = () => {
 		setValue('categoryName', '');
 	};
@@ -132,7 +129,7 @@ const CategoryUploader = () => {
 	const uploadImage = async (categoryName) => {
 		if (params.has('isNew')) {
 			//#create new category (post)
-			dispatch(createCategorymAC(categoryName, originalFile));
+			dispatch(createCategorymSG(categoryName, originalFile));
 		} else {
 			//#update category (patch)
 
@@ -149,7 +146,7 @@ const CategoryUploader = () => {
 				// }
 			}
 
-			dispatch(updateCategoryAC(categoryId, categoryName, originalFile, onProgress));
+			dispatch(updateCategorySG(categoryId, categoryName, originalFile, onProgress));
 		}
 	};
 

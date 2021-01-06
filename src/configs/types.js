@@ -67,6 +67,7 @@ export const ORDER_ACTIONS = {
     REMOVE_ORDER: "newborn/order/REMOVE_ORDER",
     CLEAR_ORDER: "newborn/order/CLEAR_ORDER",
     SET_ORDER_TOTAL_PRICE: "newborn/order/SET_ORDER_TOTAL_PRICE",
+    CREATE_ORDER_SAGA: "newborn/order/CREATE_ORDER_SAGA",
 }
 
 export const FILE_ACTIONS = {

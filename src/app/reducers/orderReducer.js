@@ -8,11 +8,12 @@ const initialState = {
     list: [],//{name, quantity, cost},
     totalPrice: 0,
     isOpendSnackbar: false,
-    orderMessage: ""
+    orderMessage: "",
+    isOpenEnqueSnackBar: false,
 }
 
 /**   
- * ADD_ORDER
+ * ADD_ORDER 
  * REMOVE_ORDER
  * CLEAR_ORDER
  */
@@ -27,6 +28,8 @@ const orderReducer = createReducer(initialState, {
                 ...state,
                 list: state.list.map(item => item._id === payload._id ?
                     { ...item, ...copyCandidate } : item),
+                isOpenEnqueSnackBar: true
+
             }
         }
         else {
@@ -35,6 +38,8 @@ const orderReducer = createReducer(initialState, {
             return {
                 ...state,
                 list: [...state.list, copyPayload],
+                isOpenEnqueSnackBar: true
+
             }
         }
     },
@@ -44,6 +49,8 @@ const orderReducer = createReducer(initialState, {
                 ...state,
                 list: state.list.map(item => item._id === payload._id ?
                     { ...item, quantity: item.quantity - 1 } : item),
+                isOpenEnqueSnackBar: false
+
             }
         } else {
             return {
@@ -51,6 +58,7 @@ const orderReducer = createReducer(initialState, {
                 list: [
                     ...state.list.filter((item) => item._id !== payload._id)
                 ],
+                isOpenEnqueSnackBar: false
 
             }
         }
@@ -61,12 +69,20 @@ const orderReducer = createReducer(initialState, {
             totalPrice: state.list.reduce((sum, item) => sum + (item.cost * item.quantity), 0)
         }
     },
+    [ORDER_ACTIONS.CLEAR_ORDER](state) {
+        return {
+            ...state,
+            list: [],
+            totalPrice: 0
+        }
+    },
 
 });
 
 export const addOrder = (payload, quantity) => ({ type: ORDER_ACTIONS.ADD_ORDER, payload, quantity });
 export const removeOrder = (payload) => ({ type: ORDER_ACTIONS.REMOVE_ORDER, payload });
 export const setOrderTotalPrice = () => ({ type: ORDER_ACTIONS.SET_ORDER_TOTAL_PRICE });
-export const setOpedSnackbar = (payload) => ({ type: ORDER_ACTIONS.IS_OPEN_SNACKBAR, payload });
+export const clearOrder = () => ({ type: ORDER_ACTIONS.CLEAR_ORDER });
+// export const openEnqueSnackBar = () => ({ type: ORDER_ACTIONS.OPEN_ENQUE_SNACK_BAR });
 
 export default orderReducer;

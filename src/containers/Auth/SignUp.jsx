@@ -16,7 +16,7 @@ import VisibilityOff from '@material-ui/icons/VisibilityOff';
 import { withStyles } from '@material-ui/core';
 
 import { validationSignUp } from './authValidation';
-import { registerAC } from 'app/actions/userActions';
+import { registerSG } from 'app/sagasActions/userActions';
 
 import styles from './styles';
 
@@ -29,7 +29,7 @@ const SignUp = ({ classes }) => {
 		setShowPassword(!showPassword);
 	};
 	const handleSubmit = (values, actions) => {
-		dispatch(registerAC(values));
+		dispatch(registerSG(values));
 		actions.setSubmitting(false); //disabled={isSubmitting}
 		history.push('/login?registered=true');
 	};

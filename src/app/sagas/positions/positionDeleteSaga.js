@@ -3,14 +3,14 @@ import positionAPI from 'api/position';
 import { POSITION_ACTIONS } from 'configs/types';
 import { setLoggerMessage, setLoggerState } from 'app/reducers/loggerReducer';
 import { setPositionIsLoading } from 'app/reducers/positionReducer';
-import { getAllPositionsAC } from 'app/actions/positionActions';
+import { getAllPositionsSG } from 'app/sagasActions/positionActions';
 
 function* positionDeleteWorker({ positionId, categoryId }) {
     try {
         yield put(setPositionIsLoading(true));
         // yield delay(3000);
         const { data } = yield call(positionAPI.deletePosition, positionId);
-        yield put(getAllPositionsAC(categoryId));//run saga
+        yield put(getAllPositionsSG(categoryId));//run saga
         // yield put(setPositionIsLoading(false));
         if (data.status === "success") {
             yield put(setLoggerState({ open: true, status: "info" }));
