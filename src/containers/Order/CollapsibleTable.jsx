@@ -1,4 +1,4 @@
-import React, { useCallback, useEffect, useRef, useState } from 'react';
+import React, { useEffect, useRef, useState } from 'react';
 
 import { withStyles } from '@material-ui/core';
 import IconButton from '@material-ui/core/IconButton';
@@ -68,30 +68,6 @@ const CollapsibleTable = ({ positionData, categoryData }) => {
 		}
 	};
 
-	// const action = (key) => (
-	// 	<IconButton
-	// 		style={{ color: '#fff' }}
-	// 		onClick={() => {
-	// 			closeSnackbar(key);
-	// 		}}
-	// 	>
-	// 		<CancelIcon />
-	// 	</IconButton>
-	// );
-
-	const computedAction = useCallback(() => {
-		return (key) => (
-			<IconButton
-				style={{ color: '#fff' }}
-				onClick={() => {
-					closeSnackbar(key);
-				}}
-			>
-				<CancelIcon />
-			</IconButton>
-		);
-	}, [closeSnackbar]);
-
 	useEffect(() => {
 		const candiate = computedOrder.find((position) => position._id === currentOrderId);
 		//we must open with store ?
@@ -99,10 +75,19 @@ const CollapsibleTable = ({ positionData, categoryData }) => {
 			const message = `Order added x${candiate.quantity}`;
 			enqueueSnackbar(message, {
 				variant: 'info',
-				computedAction,
+				action: (key) => (
+					<IconButton
+						style={{ color: '#fff' }}
+						onClick={() => {
+							closeSnackbar(key);
+						}}
+					>
+						<CancelIcon />
+					</IconButton>
+				),
 			});
 		}
-	}, [computedOrder, currentOrderId, enqueueSnackbar, computedAction, isOpenEnqueSnackBar]);
+	}, [computedOrder, currentOrderId, enqueueSnackbar, closeSnackbar, isOpenEnqueSnackBar]);
 
 	return (
 		<TableContainer component={Paper}>
